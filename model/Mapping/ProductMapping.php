@@ -2,10 +2,11 @@
 
 namespace model\Mapping;
 
-use model\Abstract\AbstractMapping;
-use model\Trait\TraitLaundryRoom;
-use model\Trait\TraitTestString;
-use model\Trait\TraitTestInt;
+use model\Abstract\AbstractMapping,
+    model\Trait\TraitLaundryRoom,
+    model\Trait\TraitTestString,
+    model\Trait\TraitTestInt,
+    Exception;
 
 class ProductMapping extends AbstractMapping
 {
@@ -28,7 +29,10 @@ class ProductMapping extends AbstractMapping
 
     public function setProdId(?int $prod_id): void
     {
+        if(!$this->verifyInt($prod_id)) throw new Exception('Id must be an integer');
+        $prod_id = $this->intClean($prod_id);
         $this->prod_id = $prod_id;
+
     }
 
     public function getProdName(): ?string
@@ -38,7 +42,9 @@ class ProductMapping extends AbstractMapping
 
     public function setProdName(?string $prod_name): void
     {
-        $this->prod_name = $prod_name;
+        if(!$this->verifyString($prod_name)) throw new Exception('Title cannot be empty');
+        $prod_name = $this->standardClean($prod_name);
+        $this->$prod_name = $prod_name;
     }
 
     public function getProdDesc(): ?string
@@ -48,7 +54,9 @@ class ProductMapping extends AbstractMapping
 
     public function setProdDesc(?string $prod_desc): void
     {
-        $this->prod_desc = $prod_desc;
+        if(!$this->verifyString($prod_desc)) throw new Exception('Description cannot be empty');
+        $prod_desc = $this->standardClean($prod_desc);
+        $this->$prod_desc = $prod_desc;
     }
 
     public function getProdImg(): ?string
@@ -58,7 +66,9 @@ class ProductMapping extends AbstractMapping
 
     public function setProdImg(?string $prod_img): void
     {
-        $this->prod_img = $prod_img;
+        if(!$this->verifyString($prod_img)) throw new Exception('Image location cannot be empty');
+        $prod_img = $this->standardClean($prod_img);
+        $this->$prod_img = $prod_img;
     }
 
     public function getProdPrice(): ?string
@@ -68,7 +78,9 @@ class ProductMapping extends AbstractMapping
 
     public function setProdPrice(?string $prod_price): void
     {
-        $this->prod_price = $prod_price;
+        if(!$this->verifyString($prod_price)) throw new Exception('Image location cannot be empty');
+        $prod_price = $this->standardClean($prod_price);
+        $this->$prod_price = $prod_price;
     }
 
     public function getProdAmount(): ?int
@@ -78,7 +90,9 @@ class ProductMapping extends AbstractMapping
 
     public function setProdAmount(?int $prod_amount): void
     {
-        $this->prod_amount = $prod_amount;
+        if(!$this->verifyInt($prod_amount)) throw new Exception('Id must be an integer');
+        $prod_amount = $this->intClean($prod_amount);
+        $this->$prod_amount = $prod_amount;
     }
 
 
