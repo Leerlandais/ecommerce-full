@@ -1,1 +1,53 @@
-{% extends 'template.html.twig' %}
+{% extends 'template.back.html.twig' %}
+
+{% block main %}
+
+    <div class="bg-cover bg-no-repeat bg-center py-36" style="background-image: url('{{ PUB_DIR }}images/banner-bg.jpg')">
+        <div class="container">
+            <h1 class="text-6xl text-gray-800 font-medium mb-4 capitalize">
+                What would you like to do today?
+            </h1>
+
+            <div class="col-span-2 grid grid-cols-4 gap-2 mt-4">
+                <div class="grid grid-cols-2 gap-2">
+                    <div>
+                        <a href="?route=article&action=add">
+                            <h3 class="bg-primary border border-primary text-white text-center
+                                                py-3 font-medium rounded-md hover:bg-transparent hover:text-primary">
+                                Add Articles
+                            </h3>
+                        </a>
+                    </div>
+                    <div>
+                        <a href="?route=article&action=index">
+                            <h3 class="bg-primary border border-primary text-white text-center
+                                                py-3 font-medium rounded-md hover:bg-transparent hover:text-primary">
+                                Edit Articles
+                            </h3>
+                        </a>
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-2">
+                    <div>
+                        <a href="">
+                            <h3 class="bg-primary border border-primary text-white text-center
+                                                py-3 font-medium rounded-md hover:bg-transparent hover:text-primary">
+                                Contact
+                            </h3>
+                        </a>
+                    </div>
+                    <div>
+                        <a href="">
+                            <h3 class="bg-primary border border-primary text-white text-center
+                                                py-3 font-medium rounded-md hover:bg-transparent hover:text-primary">
+                                About
+                            </h3>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+{% endblock %}

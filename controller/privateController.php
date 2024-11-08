@@ -18,6 +18,15 @@ switch ($route) {
         if (!$userManager->verifyUserLevel("ROLE_SUPER", $sessionRole)) {
             $_SESSION["errorMessage"] = "You are not authorized to access that page.";
             header("Location: ./");
+            break;
+        }
+        echo $twig->render("private/private.index.html.twig", ['sessionRole' => $sessionRole, 'errorMessage' => $errorMessage]);
+        break;
+    case 'admin':
+        if (!$userManager->verifyUserLevel("ROLE_ADMIN", $sessionRole)) {
+            $_SESSION["errorMessage"] = "You are not authorized to access that page.";
+            header("Location: ./");
+            break;
         }
         echo $twig->render("private/private.index.html.twig", ['sessionRole' => $sessionRole, 'errorMessage' => $errorMessage]);
         break;
