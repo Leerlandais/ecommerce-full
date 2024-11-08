@@ -4,22 +4,25 @@ use model\Manager\UserManager;
 
 $userManager = new UserManager($db);
 
-$sessionRole = $_SESSION["user_roles"];
-
+$sessionRole = $_SESSION["user_roles"]; // To control display of things using Twig
 $route = $_GET['route'] ?? 'home';
 switch ($route) {
     case 'home':
-        echo $twig->render("public/public.index.html.twig", ['sessionRole' => $sessionRole]);
+        echo $twig->render("public/public.index.html.twig", ['sessionRole' => $sessionRole, 'errorMessage' => $errorMessage]);
         break;
     case 'logout':
         $userManager->logoutUser();
         header("Location: ./");
         break;
     case 'super':
-
+        if (!$userManager->verifyUserLevel("ROLE_SUPER", $sessionRole)) {
+            $_SESSION["errorMessage"] = "You are not authorized to access that page.";
+            header("Location: ./");
+        }
+        echo $twig->render("private/private.index.html.twig", ['sessionRole' => $sessionRole, 'errorMessage' => $errorMessage]);
         break;
     default:
-        echo $twig->render("err404.html.twig", ['sessionRole' => $sessionRole]);
+        echo $twig->render("err404.html.twig", ['sessionRole' => $sessionRole, 'errorMessage' => $errorMessage]);
 }
 
 /*

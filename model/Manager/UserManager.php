@@ -57,5 +57,11 @@ class UserManager extends AbstractManager
         session_destroy();
     }
 
+    public function verifyUserLevel(string $level, string $userLevel) : bool {
+        if(!in_array($level, json_decode($userLevel))) return false;
+
+        return true;
+
+    }
 
 } // end class
