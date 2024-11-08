@@ -12,6 +12,13 @@ if (isset($_SESSION["activity"]) && time() - $_SESSION["activity"] > 1800) {
 }
 $_SESSION["activity"] = time();
 
+if (isset($_SESSION["errorMessage"])) {
+    $errorMessage = $_SESSION["errorMessage"];
+    unset($_SESSION["errorMessage"]);
+}else {
+    $errorMessage = "";
+}
+
 use Twig\Loader\FilesystemLoader;
 use Twig\Environment;
 use model\MyPDO;

@@ -14,6 +14,10 @@ switch ($route) {
     case 'logout':
         $userManager->logoutUser();
         header("Location: ./");
+        break;
+    case 'super':
+
+        break;
     default:
         echo $twig->render("err404.html.twig", ['sessionRole' => $sessionRole]);
 }

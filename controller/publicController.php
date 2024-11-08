@@ -2,6 +2,7 @@
 
 use model\Manager\UserManager;
 
+
 $userManager = new UserManager($db);
 
 // USER LOGIN VERIFICATION
@@ -21,13 +22,13 @@ if (isset($_POST["userLoginName"],
 $route = $_GET['route'] ?? 'home';
 switch ($route) {
   case 'home':
-    echo $twig->render("public/public.index.html.twig", ["session" => false]);
+    echo $twig->render("public/public.index.html.twig", ["errorMessage" => $errorMessage]);
     break;
     case 'login' :
-        echo $twig->render('public/public.login.html.twig');
+        echo $twig->render('public/public.login.html.twig', ["errorMessage" => $errorMessage]);
         break;
 
   default:
-    echo $twig->render("err404.html.twig");
+    echo $twig->render("err404.html.twig", ["errorMessage" => $errorMessage]);
 }
             
