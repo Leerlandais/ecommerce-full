@@ -1,6 +1,6 @@
 function getProductJson(direction, extra=null){
     showTest ? logThis("Fetching JSON data for "+direction.toUpperCase()) : null;
-    fetch("js/products.json")
+    fetch("scripts/products.json")
         .then(function(response) {
             return response.json();
         })

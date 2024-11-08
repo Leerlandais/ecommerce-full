@@ -1,10 +1,10 @@
 {% extends 'base.html.twig' %}
 
 {% block stylesheets %}
-    <link rel="shortcut icon" href="{{ PUB_DIR }}images/favicon/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
 
-    <link rel="stylesheet" href="{{ PUB_DIR }}styles/main.css">
-    <link rel="stylesheet" href="{{ PUB_DIR }}styles/style.css">
+    <link rel="stylesheet" href="../public/styles/main.css">
+    <link rel="stylesheet" href="../public/styles/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap"
@@ -18,7 +18,7 @@
     <header class="py-4 shadow-sm bg-white">
         <div class="container flex items-center justify-between">
             <a href="?route=home">
-                <img src="{{ PUB_DIR }}images/logo.svg" alt="Logo" class="w-32">
+                <img src="../public/images/logo.svg" alt="Logo" class="w-32">
             </a>
 
             <div class="w-full max-w-xl relative flex">
@@ -80,7 +80,7 @@
     <footer class="bg-white pt-16 pb-12 border-t border-gray-100">
         <div class="container grid grid-cols-1 ">
             <div class="col-span-1 space-y-4">
-                <img src="{{ PUB_DIR }}images/logo.svg" alt="logo" class="w-30">
+                <img src="../public/images/logo.svg" alt="logo" class="w-30">
                 <div class="mr-2">
                     <p class="text-gray-500">
                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, hic?
@@ -154,7 +154,7 @@
         <div class="container flex items-center justify-between">
             <p class="text-white"><a href="https://leerlandais.com" target="_blank">&copy; Leerlandais </a>{{ 'now' | date('Y') }}</p>
             <div>
-                <img src="{{ PUB_DIR }}images/methods.png" alt="methods" class="h-5">
+                <img src="../public/images/methods.png" alt="methods" class="h-5">
             </div>
         </div>
     </div>
@@ -162,10 +162,10 @@
 {% endblock %}
 
 {% block scripts %}
-    <script src="{{ PUB_DIR }}scripts/consoleLogger.js"></script>
-    <script src="{{ PUB_DIR }}scripts/jsonHandler.js"></script>
-    <script src="{{ PUB_DIR }}scripts/storageHandler.js"></script>
-    <script src="{{ PUB_DIR }}scripts/elementBuilder.js"></script>
-    <script src="{{ PUB_DIR }}scripts/basketHandler.js"></script>
+    <script src="../public/scripts/consoleLogger.js"></script>
+    <script src="../public/scripts/jsonHandler.js"></script>
+    <script src="../public/scripts/storageHandler.js"></script>
+    <script src="../public/scripts/elementBuilder.js"></script>
+    <script src="../public/scripts/basketHandler.js"></script>
 {% endblock %}
 
