@@ -11,6 +11,6 @@ class CategoryManager extends AbstractManager
      *      - Add Category
      *      - Update Category
      *      - Delete Category
-     *      - Fetch Articles By Category
+     *      - Fetch Articles By Category (maybe extraneous as this will be handled by JS)
      */
 }
