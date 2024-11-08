@@ -36,10 +36,25 @@ class UserManager extends AbstractManager
             echo "Password verification failed.";
             return false;
         }
-
+        $_SESSION = $row;
         $_SESSION["id"] = session_id();
         $_SESSION["siteName"] = "ecommerce";
+        unset($_SESSION["user_password"]);
+        unset($_SESSION["user_uniqid"]);
         return true;
+    }
+
+    public function logoutUser() {
+        $_SESSION = [];
+
+        if (ini_get("session.use_cookies")) {
+            $params = session_get_cookie_params();
+            setcookie(session_name(), '', time() - 42000,
+                $params["path"], $params["domain"],
+                $params["secure"], $params["httponly"]
+            );
+        }
+        session_destroy();
     }
 
 

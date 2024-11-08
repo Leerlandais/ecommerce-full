@@ -54,25 +54,7 @@
 
 {% block navbar %}
 
-    <nav class="bg-gray-800">
-        <div class="container flex">
-
-
-            <div class="flex items-center justify-between flex-grow md:pl-12 py-5">
-                <div class="flex items-center space-x-6 capitalize">
-                    <a href="?route=home" class="text-gray-200 hover:text-white transition">Home</a>
-                    <a href="?route=home" class="text-gray-200 hover:text-white transition">Shop</a>
-                    <a href="?nowhere" class="text-gray-200 hover:text-white transition">About us</a>
-                    <a href="?nowhere" class="text-gray-200 hover:text-white transition">Contact us</a>
-                </div>
-                {% if session == true %}
-                    <a href="?route=logout" class="text-gray-200 hover:text-white transition">Logout</a>
-                {% else %}
-                    <a href="?route=login" class="text-gray-200 hover:text-white transition">Login</a>
-                {% endif %}
-            </div>
-        </div>
-    </nav>
+    {% include('_menu.html.twig') %}
 
 {% endblock %}
 
