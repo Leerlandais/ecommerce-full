@@ -21,7 +21,7 @@ if (isset($_POST["userLoginName"],
 $route = $_GET['route'] ?? 'home';
 switch ($route) {
   case 'home':
-    echo $twig->render("public/public.index.html.twig");
+    echo $twig->render("public/public.index.html.twig", ["session" => false]);
     break;
     case 'login' :
         echo $twig->render('public/public.login.html.twig');
