@@ -5,7 +5,6 @@ use model\Manager\UserManager;
 $userManager = new UserManager($db);
 
 $sessionRole = $_SESSION["user_roles"];
-var_dump($sessionRole);
 
 $route = $_GET['route'] ?? 'home';
 switch ($route) {
@@ -16,7 +15,7 @@ switch ($route) {
         $userManager->logoutUser();
         header("Location: ./");
     default:
-        echo $twig->render("err404.html.twig");
+        echo $twig->render("err404.html.twig", ['sessionRole' => $sessionRole]);
 }
 
 /*
