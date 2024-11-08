@@ -14,7 +14,8 @@
         {% block stylesheet %}{% endblock %}
     {% endblock %}
 </head>
-<body class={% block bodyClass %}{% endblock %}>{% block body %}
+<body class={% block bodyClass %}{% endblock %}>
+{% block body %}
 {% block header %}{% endblock %}
 
 {% block navbar %}{% endblock %}
@@ -27,6 +28,8 @@
 {% block footer %}{% endblock %}
 {% block copyright %}{% endblock %}
 {% block scripts %}{% endblock %}
+
+{% endblock %}
 </body>
 
 </html>
