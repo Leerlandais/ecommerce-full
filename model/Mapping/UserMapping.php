@@ -20,11 +20,23 @@ class UserMapping extends AbstractMapping
     protected ?string $user_email;
     protected ?string $user_address;
     protected ?string $user_uniqid;
-    protected ?array $user_roles;
+    protected ?string $user_roles;
 
     private function verifyUserRoles($roles) {
+        if (is_string($roles)) {
+            $roles = json_decode($roles, true);
+        }
+
+        if (!is_array($roles)) {
+            return false;
+        }
         $permittedRoles = ["ROLE_SUPER", "ROLE_ADMIN", "ROLE_USER"];
-        if (!in_array($roles, $permittedRoles)) return false;
+
+        foreach ($roles as $role) {
+            if (!in_array($role, $permittedRoles)) {
+                return false;
+            }
+        }
         return true;
     }
 
@@ -111,14 +123,15 @@ class UserMapping extends AbstractMapping
         $this->user_uniqid = $user_uniqid;
     }
 
-    public function getUserRoles(): ?array
+    public function getUserRoles(): ?string
     {
         return $this->user_roles;
     }
 
-    public function setUserRoles(?array $user_roles): void
+    public function setUserRoles(?string $user_roles): void
     {
-        if(!is_array($user_roles)) throw new Exception('Roles must be an array');
+
+        if(!$this->verifyString($user_roles)) throw new Exception('Roles must be an string');
         if(!$this->verifyUserRoles($user_roles)) throw new Exception('Role not acceptable');
         $this->user_roles = $user_roles;
     }
