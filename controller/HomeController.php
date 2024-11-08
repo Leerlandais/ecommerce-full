@@ -4,11 +4,12 @@ namespace controller;
 
 use controller\AbstractController;
 
-class ErrorController extends AbstractController {
+class HomeController extends AbstractController
+{
 
-    public function error404() {
+    public function index() {
         global $sessionRole, $errorMessage;
-        echo $this->twig->render("err404.html.twig", [
+        echo $this->twig->render("public/public.index.html.twig", [
             'sessionRole' => $sessionRole,
             'errorMessage' => $errorMessage
         ]);
