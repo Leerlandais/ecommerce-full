@@ -31,6 +31,7 @@ $router->registerRoute("addCategory", CategoryController::class, 'addCategory');
 $router->registerRoute("listCategory", CategoryController::class, 'listCategory');
 $router->registerRoute('createCat', CategoryController::class, 'createCategory');
 $router->registerRoute("updateCat", CategoryController::class, 'updateCategory');
+$router->registerRoute('editCat', CategoryController::class, 'editCategory');
 
 $router->registerRoute('404', ErrorController::class, 'error404');
 

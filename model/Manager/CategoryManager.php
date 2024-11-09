@@ -47,4 +47,19 @@ class CategoryManager extends AbstractManager
         return true;
     }
 
+    public function editCategory($mapping) {
+        $id =$mapping->getCatsId();
+        $name =$mapping->getCatsName();
+        $desc =$mapping->getCatsDesc();
+        $stmt = $this->db->prepare("UPDATE ecom_categories 
+                                          SET `cats_name`= :name,`cats_desc`= :descrpt 
+                                          WHERE cats_id = :id");
+        $stmt->bindParam(":id", $id);
+        $stmt->bindParam(":name", $name);
+        $stmt->bindParam(":descrpt", $desc);
+        $stmt->execute();
+        if ($stmt->rowCount() === 0) return false;
+        return true;
+    }
+
 } // end class
