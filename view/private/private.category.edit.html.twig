@@ -1,0 +1,37 @@
+{% extends 'private/private.index.html.twig' %}
+
+{% block main %}
+{{ parent() }}
+    <div class="contain py-16">
+        <div class="max-w-lg mx-auto shadow px-6 py-7 rounded overflow-hidden">
+            <h2 class="text-2xl uppercase font-medium mb-1">Update {{ oneCategory.cats_name }}</h2>
+            <form action="?route=editCat" method="post" autocomplete="off">
+                <div class="space-y-2">
+                    <input type="text" class="hidden" name="categoryId" value="{{ oneCategory.cats_id }}">
+                    <div>
+                        <label for="categoryName" class="text-gray-600 mb-2 block">Category Name</label>
+                        <input type="text" name="categoryName" id="categoryName"
+                               class="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400"
+                               placeholder="{{ oneCategory.cats_name }}"
+                               value="{{ oneCategory.cats_name }}">
+                    </div>
+                    <div>
+                        <label for="categoryDesc" class="text-gray-600 mb-2 block">Category Description</label>
+                        <input type="text" name="categoryDesc" id="categoryDesc"
+                               class="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400"
+                               placeholder="{{ oneCategory.cats_desc }}"
+                               value="{{ oneCategory.cats_desc }}">
+                    </div>
+
+                </div>
+                <div class="mt-4">
+                    <button type="submit"
+                            class="block w-full py-2 text-center text-white bg-primary border border-primary rounded hover:bg-transparent hover:text-primary transition uppercase font-roboto font-medium">
+                        Update Category
+                    </button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+{% endblock %}

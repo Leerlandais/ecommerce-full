@@ -25,6 +25,15 @@ class CategoryManager extends AbstractManager
         }
         return $dataObject;
     }
+
+    public function getOneCategoryById($id)
+    {
+        $stmt = $this->db->prepare("SELECT * FROM ecom_categories WHERE cats_id = :id");
+        $stmt->bindParam(":id", $id);
+        $stmt->execute();
+        return $stmt->fetch();
+
+    }
     public function addNewCategory($mapping) {
         $name =$mapping->getCatsName();
         $desc =$mapping->getCatsDesc();

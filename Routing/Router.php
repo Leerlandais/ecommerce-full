@@ -29,16 +29,14 @@ class Router
     public function handleRequest($route)
     {
         if (!isset($this->routes[$route])) {
-            $route = '404'; // Default to 404 if route not found
+            $route = '404';
         }
 
         $controllerClass = $this->routes[$route]['controller'];
         $method = $this->routes[$route]['method'];
 
-        // Instantiate controller with dependencies based on controller type
         $controller = new $controllerClass($this->twig, $this->userManager, $this->db);
 
-        // Call the specified method on the controller
         $controller->$method();
     }
 }

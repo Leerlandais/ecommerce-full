@@ -20,7 +20,7 @@
                         <td class="py-3 px-4">{{ cat.getCatsName }}</td>
                         <td class="py-3 px-4">{{ cat.getCatsDesc | raw }}</td>
                         <td class="py-3 px-4">
-                            <a href="?route=updateCat&{{ cat.getCatsId }}" class="font-medium text-blue-600 hover:text-blue-800">Update</a>
+                            <a href="?route=updateCat&catId={{ cat.getCatsId }}" class="font-medium text-blue-600 hover:text-blue-800">Update</a>
                         </td>
                     </tr>
                 {% endfor %}
