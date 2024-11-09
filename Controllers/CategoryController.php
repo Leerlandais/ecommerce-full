@@ -35,14 +35,23 @@ class CategoryController extends AbstractController
             header("Location: ./");
             exit();
         }
+        $categoryManager = new CategoryManager($this->db);
+        $categories = $categoryManager->getCategories();
 
-        echo $this->twig->render("private/private.article.list.html.twig", [
+        echo $this->twig->render("private/private.category.list.html.twig", [
             "errorMessage" => $errorMessage,
-            'sessionRole' => $sessionRole
+            'sessionRole' => $sessionRole,
+            "categories" => $categories
         ]);
     }
 
     public function createCategory() {
+        global $sessionRole;
+        if (!$this->userManager->verifyUserLevel("ROLE_ADMIN", $sessionRole)) {
+            $_SESSION["errorMessage"] = "You are not authorised to access that page.";
+            header("Location: ./");
+            exit();
+        }
         if (isset($_POST["categoryName"],
             $_POST["categoryDesc"]
         )){

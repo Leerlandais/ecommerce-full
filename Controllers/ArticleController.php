@@ -35,14 +35,22 @@ class ArticleController extends AbstractController
             header("Location: ./");
             exit();
         }
-
+        $articleManager = new ArticleManager($this->db);
+        $articles = $articleManager->getArticles();
         echo $this->twig->render("private/private.article.list.html.twig", [
             "errorMessage" => $errorMessage,
-            'sessionRole' => $sessionRole
+            'sessionRole' => $sessionRole,
+            "articles" => $articles
         ]);
     }
 
     public function createArticle() {
+        global $errorMessage, $sessionRole;
+        if (!$this->userManager->verifyUserLevel("ROLE_ADMIN", $sessionRole)) {
+            $_SESSION["errorMessage"] = "You are not authorised to access that page.";
+            header("Location: ./");
+            exit();
+        }
         if (isset($_POST["productName"],
             $_POST["productDesc"],
             $_POST["productPrice"],

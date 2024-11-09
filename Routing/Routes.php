@@ -28,6 +28,7 @@ $router->registerRoute("listArticle", ArticleController::class, 'listArticle');
 $router->registerRoute("createArt", ArticleController::class, 'createArticle');
 
 $router->registerRoute("addCategory", CategoryController::class, 'addCategory');
+$router->registerRoute("listCategory", CategoryController::class, 'listCategory');
 $router->registerRoute('createCat', CategoryController::class, 'createCategory');
 
 $router->registerRoute('404', ErrorController::class, 'error404');

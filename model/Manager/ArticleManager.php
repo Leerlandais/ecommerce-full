@@ -3,6 +3,7 @@
 namespace model\Manager;
 
 use model\Abstract\AbstractManager;
+use model\Mapping\ArticleMapping;
 
 class ArticleManager extends AbstractManager
 {
@@ -30,6 +31,18 @@ class ArticleManager extends AbstractManager
         $stmt->execute([$name, $desc, $price, $img, $amount]);
         if ($stmt->rowCount() === 0) return false;
         return true;
+    }
+
+    public function getArticles(): array
+    {
+        $query = $this->db->query("SELECT * FROM ecom_products");
+        $datas = $query->fetchAll();
+        $query->closeCursor();
+        $dataObject = [];
+        foreach ($datas as $data) {
+            $dataObject[] = new ArticleMapping($data);
+        }
+        return $dataObject;
     }
 
     public function getLastArticleId() {
