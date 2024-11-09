@@ -3,7 +3,7 @@
 
 session_start();
 
-
+var_dump($_SESSION);
 if (isset($_SESSION["activity"]) && time() - $_SESSION["activity"] > 1800) {
     session_unset();
     session_destroy();
@@ -18,6 +18,8 @@ if (isset($_SESSION["errorMessage"])) {
 }else {
     $errorMessage = "";
 }
+$sessionRole = "";
+if(isset($_SESSION['user_roles'])) $sessionRole = $_SESSION['user_roles'];
 
 use Twig\Loader\FilesystemLoader;
 use Twig\Environment;
@@ -61,8 +63,10 @@ try {
 }catch (Exception $e){
    die($e->getMessage());
 }
+require_once PROJECT_DIRECTORY . '/Routing/Routes.php';
 
-require_once PROJECT_DIRECTORY.'/controller/routerController.php';
+
+// require_once PROJECT_DIRECTORY.'/Controllers/routerController.php';
 
 // $db = null;   
         
