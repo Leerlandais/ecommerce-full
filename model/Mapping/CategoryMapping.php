@@ -32,6 +32,7 @@ class CategoryMapping extends AbstractMapping
     public function getCatsName(): ?string
     {
         return $this->cats_name;
+
     }
 
     public function setCatsName(?string $cats_name): void
@@ -43,7 +44,7 @@ class CategoryMapping extends AbstractMapping
 
     public function getCatsDesc(): ?string
     {
-        return $this->cats_desc;
+        return htmlspecialchars_decode($this->cats_desc);
     }
 
     public function setCatsDesc(?string $cats_desc): void
