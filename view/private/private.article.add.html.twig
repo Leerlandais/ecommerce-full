@@ -2,5 +2,49 @@
 
 {% block main %}
 {{ parent() }}
-    <h3 class="text-center text-3xl">Add Article</h3>
+    <div class="contain py-16">
+        <div class="max-w-lg mx-auto shadow px-6 py-7 rounded overflow-hidden">
+            <h2 class="text-2xl uppercase font-medium mb-1">Create an Article</h2>
+            <form action="#" method="post" autocomplete="off">
+                <div class="space-y-2">
+                    <div>
+                        <label for="productName" class="text-gray-600 mb-2 block">Product Name</label>
+                        <input type="text" name="productName" id="productName"
+                               class="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400"
+                               placeholder="Comfy Chair">
+                    </div>
+                    <div>
+                        <label for="productDesc" class="text-gray-600 mb-2 block">Product Description</label>
+                        <input type="text" name="productDesc" id="productDesc"
+                               class="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400"
+                               placeholder="A really comfy chair to sit in">
+                    </div>
+                    <div>
+                        <label for="productPrice" class="text-gray-600 mb-2 block">Price</label>
+                        <input type="text" name="productPrice" id="productPrice"
+                               class="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400"
+                               placeholder="249.00">
+                    </div>
+                    <div>
+                        <label for="productImage" class="text-gray-600 mb-2 block">Image Location</label>
+                        <input type="text" name="productImage" id="productImage"
+                               class="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400"
+                               placeholder="images/products/product3.jpg">
+                    </div>
+                    <div>
+                        <label for="productAmount" class="text-gray-600 mb-2 block">Amount Available</label>
+                        <input type="number" min="0" max="99" name="productAmount" id="productAmount"
+                               class="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400"
+                               placeholder="0">
+                    </div>
+                </div>
+                <div class="mt-4">
+                    <button type="submit"
+                            class="block w-full py-2 text-center text-white bg-primary border border-primary rounded hover:bg-transparent hover:text-primary transition uppercase font-roboto font-medium">create
+                        Article</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
 {% endblock %}
