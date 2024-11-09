@@ -18,6 +18,8 @@ if (isset($_SESSION["errorMessage"])) {
 }else {
     $errorMessage = "";
 }
+$sessionRole = "";
+if(isset($_SESSION['user_roles'])) $sessionRole = $_SESSION['user_roles'];
 
 use Twig\Loader\FilesystemLoader;
 use Twig\Environment;

@@ -17,6 +17,7 @@ class LoginController
 
     public function login()
     {
+        global $sessionRole, $errorMessage;
         if (isset($_POST["userLoginName"], $_POST["userLoginPwd"])) {
             $name = $_POST["userLoginName"];
             $pwd = $_POST["userLoginPwd"];
@@ -25,14 +26,16 @@ class LoginController
                 header("Location: ./");
                 exit;
             } else {
-                $sessionRole = $_SESSION["user_roles"];
                 echo $this->twig->render("public/public.login.html.twig", [
                     'errorMessage' => $errorMessage,
                     'sessionRole' => $sessionRole
                 ]);
             }
         } else {
-            echo $this->twig->render("public/public.login.html.twig");
+            echo $this->twig->render("public/public.login.html.twig", [
+                'errorMessage' => $errorMessage,
+                'sessionRole' => $sessionRole
+            ]);
         }
     }
 }

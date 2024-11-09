@@ -12,11 +12,10 @@ class HomeController {
     }
 
     public function index() {
-        $sessionRole = "";
-        if(isset($_SESSION['user_roles'])) $sessionRole = $_SESSION['user_roles'];
+    global $sessionRole, $errorMessage;
         echo $this->twig->render("public/public.index.html.twig", [
             'sessionRole' => $sessionRole,
-
+            'errorMessage' => $errorMessage
         ]);
     }
 }
