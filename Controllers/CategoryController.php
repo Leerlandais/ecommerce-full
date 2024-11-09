@@ -43,26 +43,19 @@ class CategoryController extends AbstractController
     }
 
     public function createCategory() {
-        if (isset($_POST["productName"],
-            $_POST["productDesc"],
-            $_POST["productPrice"],
-            $_POST["productImage"],
-            $_POST["productAmount"]
+        if (isset($_POST["categoryName"],
+            $_POST["categoryDesc"]
         )){
-            $articleMapData = [
-                'prod_name' => $_POST["productName"],
-                'prod_desc' => $_POST["productDesc"],
-                'prod_price' => $_POST["productPrice"],
-                'prod_img' => $_POST["productImage"],
-                'prod_amount' => $_POST["productAmount"]
+            $categoryMapData = [
+                'cats_name' => $_POST["categoryName"],
+                'cats_desc' => $_POST["categoryDesc"]
             ];
 
-            // Use $this->db instead of $db
-            $articleManager = new ArticleManager($this->db);
-            $articleMapping = new ArticleMapping($articleMapData);
+            $categoryManager = new CategoryManager($this->db);
+            $categoryMapping = new CategoryMapping($categoryMapData);
 
-            $addArticle = $articleManager->addNewArticle($articleMapping);
-            $_SESSION["errorMessage"] = $addArticle ? 'Article added!' : 'Error adding article.';
+            $addArticle = $categoryManager->addNewCategory($categoryMapping);
+            $_SESSION["errorMessage"] = $addArticle ? 'Category added!' : 'Error adding category.';
             header("Location: ?route=admin");
             exit();
         }

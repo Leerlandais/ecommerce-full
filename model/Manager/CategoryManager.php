@@ -26,6 +26,17 @@ class CategoryManager extends AbstractManager
         var_dump($dataObject);
         return $dataObject;
     }
+    public function addNewCategory($mapping) {
+        $name =$mapping->getCatsName();
+        $desc =$mapping->getCatsDesc();
 
+        $stmt = $this->db->prepare("INSERT INTO ecom_categories(
+                                                        cats_name, 
+                                                        cats_desc) 
+                                          VALUES (?,?)");
+        $stmt->execute([$name, $desc]);
+        if ($stmt->rowCount() === 0) return false;
+        return true;
+    }
 
 } // end class
