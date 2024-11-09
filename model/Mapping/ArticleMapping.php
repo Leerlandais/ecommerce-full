@@ -15,6 +15,7 @@ class ArticleMapping extends AbstractMapping
     use TraitTestInt;
     use TraitLaundryRoom;
 
+    private int $prod_id;
     private string $prod_name;
     private string $prod_desc;
     private float $prod_price;
@@ -25,6 +26,7 @@ class ArticleMapping extends AbstractMapping
     {
 
         if (!empty($data)) {
+            $this->prod_id = $data['prod_id'];
             $this->prod_name = $data['prod_name'] ?? '';
             $this->prod_desc = $data['prod_desc'] ?? '';
             $this->prod_price = $data['prod_price'] ?? 0.0;
