@@ -23,6 +23,7 @@ class CategoryManager extends AbstractManager
         foreach ($datas as $data) {
             $dataObject[] = new CategoryMapping($data);
         }
+        var_dump($dataObject);
         return $dataObject;
     }
 
