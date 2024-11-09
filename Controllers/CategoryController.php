@@ -47,7 +47,7 @@ class CategoryController extends AbstractController
 
             $addCategory = $categoryManager->addNewCategory($categoryMapping);
             $_SESSION["errorMessage"] = $addCategory ? 'Category added!' : 'Error adding category.';
-            header("Location: ?route=admin");
+            header("Location: ?route=listCategory");
             exit();
         }
     }
@@ -112,7 +112,7 @@ class CategoryController extends AbstractController
 
             $editCategory = $categoryManager->editCategory($categoryMapping);
             $_SESSION["errorMessage"] = $editCategory ? 'Category updated!' : 'Error updating category.';
-            header("Location: ?route=admin");
+            header("Location: ?route=listCategory");
             exit();
         }
     }

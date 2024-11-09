@@ -65,7 +65,6 @@ class ArticleController extends AbstractController
                 'prod_amount' => $_POST["productAmount"]
             ];
 
-            // Use $this->db instead of $db
             $articleManager = new ArticleManager($this->db);
             $articleMapping = new ArticleMapping($articleMapData);
 
@@ -78,7 +77,7 @@ class ArticleController extends AbstractController
             }
 
             $_SESSION["errorMessage"] = $addArticle && $addArticleCat  ? 'Article added!' : 'Error adding article.';
-            header("Location: ?route=admin");
+            header("Location: ?route=listArticle");
             exit();
         }
     }
@@ -94,12 +93,52 @@ class ArticleController extends AbstractController
         $artId = $_GET["artId"];
 
         $oneArticle = $articleManager->getOneArticleById($artId);
+        $categoryManager = new CategoryManager($this->db);
+        $categories = $categoryManager->getCategories();
 
         echo $this->twig->render("private/private.article.edit.html.twig", [
             "errorMessage" => $errorMessage,
             'sessionRole' => $sessionRole,
-            "oneArticle" => $oneArticle
+            "oneArticle" => $oneArticle,
+            "categories" => $categories
         ]);
+    }
+
+    public function editArticle()
+    {
+        global $sessionRole, $errorMessage;
+        if (!$this->userManager->verifyUserLevel("ROLE_ADMIN", $sessionRole)) {
+            $_SESSION["errorMessage"] = "You are not authorised to access that page.";
+            header("Location: ./");
+            exit();
+        }
+
+        if (isset(
+            $_POST["productId"],
+            $_POST["productName"],
+            $_POST["productDesc"],
+            $_POST["productPrice"],
+            $_POST["productImage"],
+            $_POST["productAmount"],
+            $_POST["addCatType"]
+        )){
+            $articleMapData = [
+                'prod_id' => $_POST["productId"],
+                'prod_name' => $_POST["productName"],
+                'prod_desc' => $_POST["productDesc"],
+                'prod_price' => $_POST["productPrice"],
+                'prod_img' => $_POST["productImage"],
+                'prod_amount' => $_POST["productAmount"]
+            ];
+
+            $articleManager = new ArticleManager($this->db);
+            $articleMapping = new ArticleMapping($articleMapData);
+
+            $editArticle = $articleManager->editArticle($articleMapping);
+            $_SESSION["errorMessage"] = $editArticle ? 'Article updated!' : 'Error updating article.';
+            header("Location: ?route=listArticle");
+            exit();
+        }
     }
 
 } // end class

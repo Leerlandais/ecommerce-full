@@ -71,4 +71,30 @@ class ArticleManager extends AbstractManager
         return $stmt->fetch();
     }
 
+    public function editArticle($mapping) {
+        $id =$mapping->getProdId();
+        $name =$mapping->getProdName();
+        $desc =$mapping->getProdDesc();
+        $price =$mapping->getProdPrice();
+        $img =$mapping->getProdImg();
+        $amount =$mapping->getProdAmount();
+
+        $stmt = $this->db->prepare("UPDATE ecom_products 
+                                          SET `prod_name`= :name,
+                                              `prod_desc`= :descrpt, 
+                                              `prod_price` = :price, 
+                                              `prod_img`= :img, 
+                                              `prod_amount`= :amount 
+                                          WHERE prod_id = :id");
+        $stmt->bindParam(":id", $id);
+        $stmt->bindParam(":name", $name);
+        $stmt->bindParam(":descrpt", $desc);
+        $stmt->bindParam(":price", $price);
+        $stmt->bindParam(":img", $img);
+        $stmt->bindParam(":amount", $amount);
+
+        $stmt->execute();
+        if ($stmt->rowCount() === 0) return false;
+        return true;
+    }
 }

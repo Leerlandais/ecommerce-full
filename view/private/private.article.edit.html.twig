@@ -7,7 +7,7 @@
             <h2 class="text-2xl uppercase font-medium mb-1">Update {{ oneArticle.prod_name }}</h2>
             <form action="?route=editArt" method="post" autocomplete="off">
                 <div class="space-y-2">
-                    <input type="text" class="hidden" name="atricleId" value="{{ oneArticle.prod_id }}">
+                    <input type="text" class="hidden" name="productId" value="{{ oneArticle.prod_id }}">
                     <div>
                         <label for="productName" class="text-gray-600 mb-2 block">Product Name</label>
                         <input type="text" name="productName" id="productName"
