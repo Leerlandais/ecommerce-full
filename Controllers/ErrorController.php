@@ -1,10 +1,15 @@
 <?php
 
-namespace controller;
+namespace Controllers;
 
-use controller\AbstractController;
+use Twig\Environment;
 
-class ErrorController extends AbstractController {
+class ErrorController {
+    private $twig;
+
+    public function __construct(Environment $twig) {
+        $this->twig = $twig;
+    }
 
     public function error404() {
         global $sessionRole, $errorMessage;

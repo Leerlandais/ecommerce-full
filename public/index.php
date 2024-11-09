@@ -62,7 +62,9 @@ try {
    die($e->getMessage());
 }
 require_once PROJECT_DIRECTORY . '/Routing/Routes.php';
-// require_once PROJECT_DIRECTORY.'/controller/routerController.php';
+
+
+// require_once PROJECT_DIRECTORY.'/Controllers/routerController.php';
 
 // $db = null;   
         

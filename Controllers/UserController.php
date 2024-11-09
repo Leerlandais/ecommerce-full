@@ -1,13 +1,21 @@
 <?php
 
-namespace controller;
+namespace Controllers;
 
-use controller\AbstractController,
-    model\Manager\UserManager;
+use model\Manager\UserManager;
+use Twig\Environment;
 
-class UserController extends AbstractController
+class UserController
 {
     private $userManager;
+    private $twig;
+
+    public function __construct(Environment $twig,UserManager $userManager) {
+        $this->userManager = $userManager;
+        $this->twig = $twig;
+    }
+
+
     public function logout() {
         $this->userManager->logoutUser();
         header("Location: ./");

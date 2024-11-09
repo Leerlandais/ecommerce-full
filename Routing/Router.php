@@ -1,25 +1,40 @@
 <?php
+
 namespace Routing;
 
-use controller\ErrorController;
-class Router {
-    private array $routes = [];
+class Router
+{
+    private $routes = [];
+    private $twig;
+    private $userManager;
 
-    public function registerRoute($route, $controller, $method): void
+    public function __construct($twig, $userManager)
     {
-        $this->routes[$route] = ['controller' => $controller, 'method' => $method];
+        $this->twig = $twig;
+        $this->userManager = $userManager;
     }
 
-    public function handleRequest($route) {
-        if (isset($this->routes[$route])) {
-            $controllerClass = $this->routes[$route]['controller'];
-            $method = $this->routes[$route]['method'];
+    public function registerRoute($routeName, $controllerClass, $methodName)
+    {
+        $this->routes[$routeName] = [
+            'controller' => $controllerClass,
+            'method' => $methodName
+        ];
+    }
 
-            $controller = new $controllerClass();
-            return $controller->$method();
-        } else {
-            $errorController = new ErrorController();
-            return $errorController->error404();
+    public function handleRequest($route)
+    {
+        if (!isset($this->routes[$route])) {
+            $route = '404'; // Default to 404 if route not found
         }
+
+        $controllerClass = $this->routes[$route]['controller'];
+        $method = $this->routes[$route]['method'];
+
+        // Instantiate controller with dependencies based on controller type
+        $controller = new $controllerClass($this->twig, $this->userManager);
+
+        // Call the specified method on the controller
+        $controller->$method();
     }
 }

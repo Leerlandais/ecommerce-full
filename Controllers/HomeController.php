@@ -1,11 +1,15 @@
 <?php
 
-namespace controller;
+namespace Controllers;
 
-use controller\AbstractController;
+use Twig\Environment;
 
-class HomeController extends AbstractController
-{
+class HomeController {
+    private $twig;
+
+    public function __construct(Environment $twig) {
+        $this->twig = $twig;
+    }
 
     public function index() {
         global $sessionRole, $errorMessage;
