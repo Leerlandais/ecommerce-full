@@ -1,6 +1,7 @@
 <?php
 
 
+use Controllers\ArticleController;
 use Controllers\ErrorController;
 use Controllers\HomeController;
 use Controllers\LoginController;
@@ -18,6 +19,8 @@ $router->registerRoute('login', LoginController::class, 'login');
 $router->registerRoute('logout', UserController::class, 'logout');
 $router->registerRoute('super', UserController::class, 'super');
 $router->registerRoute('admin', UserController::class, 'admin');
+$router->registerRoute("addArticle", ArticleController::class, 'addArticle');
+$router->registerRoute("listArticle", ArticleController::class, 'listArticle');
 $router->registerRoute('404', ErrorController::class, 'error404');
 
 // Handle request
