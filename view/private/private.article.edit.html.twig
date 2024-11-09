@@ -4,38 +4,44 @@
 {{ parent() }}
     <div class="contain py-16">
         <div class="max-w-lg mx-auto shadow px-6 py-7 rounded overflow-hidden">
-            <h2 class="text-2xl uppercase font-medium mb-1">Update {{ article.prod_id }}</h2>
+            <h2 class="text-2xl uppercase font-medium mb-1">Update {{ oneArticle.prod_name }}</h2>
             <form action="?route=editArt" method="post" autocomplete="off">
                 <div class="space-y-2">
+                    <input type="text" class="hidden" name="atricleId" value="{{ oneArticle.prod_id }}">
                     <div>
                         <label for="productName" class="text-gray-600 mb-2 block">Product Name</label>
                         <input type="text" name="productName" id="productName"
                                class="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400"
-                               placeholder="Comfy Chair">
+                               placeholder="{{ oneArticle.prod_name }}"
+                               value="{{ oneArticle.prod_name }}">
                     </div>
                     <div>
                         <label for="productDesc" class="text-gray-600 mb-2 block">Product Description</label>
                         <input type="text" name="productDesc" id="productDesc"
                                class="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400"
-                               placeholder="A really comfy chair to sit in">
+                               placeholder="{{ oneArticle.prod_desc }}"
+                               value="{{ oneArticle.prod_desc }}">
                     </div>
                     <div>
                         <label for="productPrice" class="text-gray-600 mb-2 block">Price</label>
                         <input type="text" name="productPrice" id="productPrice"
                                class="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400"
-                               placeholder="249.00">
+                               placeholder="{{ oneArticle.prod_price }}"
+                               value="{{ oneArticle.prod_price }}">
                     </div>
                     <div>
                         <label for="productImage" class="text-gray-600 mb-2 block">Image Location</label>
                         <input type="text" name="productImage" id="productImage"
                                class="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400"
-                               placeholder="images/products/product3.jpg">
+                               placeholder="{{ oneArticle.prod_img }}"
+                               value="{{ oneArticle.prod_img }}">
                     </div>
                     <div>
                         <label for="productAmount" class="text-gray-600 mb-2 block">Amount Available</label>
                         <input type="number" min="0" max="99" name="productAmount" id="productAmount"
                                class="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400"
-                               placeholder="0">
+                               placeholder="{{ oneArticle.prod_amount }}"
+                               value="{{ oneArticle.prod_amount }}">
                     </div>
                     <div class="mt-4 text-center">
                         {% for cat in categories %}

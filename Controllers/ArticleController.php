@@ -11,6 +11,21 @@ use model\Mapping\ArticleMapping;
 class ArticleController extends AbstractController
 {
 
+    public function listArticle() {
+        global $errorMessage, $sessionRole;
+        if (!$this->userManager->verifyUserLevel("ROLE_ADMIN", $sessionRole)) {
+            $_SESSION["errorMessage"] = "You are not authorised to access that page.";
+            header("Location: ./");
+            exit();
+        }
+        $articleManager = new ArticleManager($this->db);
+        $articles = $articleManager->getArticles();
+        echo $this->twig->render("private/private.article.list.html.twig", [
+            "errorMessage" => $errorMessage,
+            'sessionRole' => $sessionRole,
+            "articles" => $articles
+        ]);
+    }
 
     public function addArticle() {
         global $errorMessage, $sessionRole;
@@ -25,22 +40,6 @@ class ArticleController extends AbstractController
             "errorMessage" => $errorMessage,
             'sessionRole' => $sessionRole,
             "categories" => $categories
-        ]);
-    }
-
-    public function listArticle() {
-        global $errorMessage, $sessionRole;
-        if (!$this->userManager->verifyUserLevel("ROLE_ADMIN", $sessionRole)) {
-            $_SESSION["errorMessage"] = "You are not authorised to access that page.";
-            header("Location: ./");
-            exit();
-        }
-        $articleManager = new ArticleManager($this->db);
-        $articles = $articleManager->getArticles();
-        echo $this->twig->render("private/private.article.list.html.twig", [
-            "errorMessage" => $errorMessage,
-            'sessionRole' => $sessionRole,
-            "articles" => $articles
         ]);
     }
 
@@ -84,6 +83,23 @@ class ArticleController extends AbstractController
         }
     }
 
+    public function updateArticle(): void
+    {
+        global $sessionRole, $errorMessage;
+        if (!$this->userManager->verifyUserLevel("ROLE_ADMIN", $sessionRole)) {
+            $_SESSION["errorMessage"] = "You are not authorised to access that page.";
+            header("Location: ./");
+        }
+        $articleManager = new ArticleManager($this->db);
+        $artId = $_GET["artId"];
 
+        $oneArticle = $articleManager->getOneArticleById($artId);
 
-}
+        echo $this->twig->render("private/private.article.edit.html.twig", [
+            "errorMessage" => $errorMessage,
+            'sessionRole' => $sessionRole,
+            "oneArticle" => $oneArticle
+        ]);
+    }
+
+} // end class

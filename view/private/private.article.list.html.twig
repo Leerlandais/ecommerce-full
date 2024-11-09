@@ -26,7 +26,7 @@
                         <td class="py-3 px-4">{{ art.getProdImg }}</td>
                         <td class="py-3 px-4">{{ art.getProdAmount }}</td>
                         <td class="py-3 px-4">
-                            <a href="?route=updateArt&{{ art.getProdId }}" class="font-medium text-blue-600 hover:text-blue-800">Update</a>
+                            <a href="?route=updateArt&artId={{ art.getProdId }}" class="font-medium text-blue-600 hover:text-blue-800">Update</a>
                         </td>
                     </tr>
                 {% endfor %}

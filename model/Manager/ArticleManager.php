@@ -63,4 +63,12 @@ class ArticleManager extends AbstractManager
         return true;
     }
 
+    public function getOneArticleById($id)
+    {
+        $stmt = $this->db->prepare("SELECT * FROM ecom_products WHERE prod_id = :id");
+        $stmt->bindParam(":id", $id);
+        $stmt->execute();
+        return $stmt->fetch();
+    }
+
 }
