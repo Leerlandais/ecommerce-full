@@ -8,7 +8,7 @@ use model\Abstract\AbstractMapping,
     model\Trait\TraitTestInt,
     Exception;
 
-class ProductMapping extends AbstractMapping
+class ArticleMapping extends AbstractMapping
 {
 
     use TraitTestString;

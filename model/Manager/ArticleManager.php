@@ -4,7 +4,7 @@ namespace model\Manager;
 
 use model\Abstract\AbstractManager;
 
-class ProductManager extends AbstractManager
+class ArticleManager extends AbstractManager
 {
     /*
      * Needs functions for :-

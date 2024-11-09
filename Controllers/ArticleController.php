@@ -3,6 +3,9 @@
 namespace Controllers;
 
 use Controllers\AbstractController;
+use model\Manager\ArticleManager;
+
+
 
 class ArticleController extends AbstractController
 {
@@ -32,5 +35,16 @@ class ArticleController extends AbstractController
             "errorMessage" => $errorMessage,
             'sessionRole' => $sessionRole
         ]);
+    }
+
+    public function createArticle() {
+        if (isset($_POST["productName"],
+                $_POST["productDesc"],
+                $_POST["productPrice"],
+                $_POST["productImage"],
+                $_POST["productAmount"]
+        )){
+
+        }
     }
 }

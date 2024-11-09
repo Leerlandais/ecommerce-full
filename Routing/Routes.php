@@ -21,6 +21,7 @@ $router->registerRoute('super', UserController::class, 'super');
 $router->registerRoute('admin', UserController::class, 'admin');
 $router->registerRoute("addArticle", ArticleController::class, 'addArticle');
 $router->registerRoute("listArticle", ArticleController::class, 'listArticle');
+$router->registerRoute("createArt", ArticleController::class, 'createArticle');
 $router->registerRoute('404', ErrorController::class, 'error404');
 
 // Handle request
