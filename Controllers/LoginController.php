@@ -2,12 +2,8 @@
 
 namespace Controllers;
 
-use model\Manager\UserManager;
-use Twig\Environment;
-
 class LoginController extends AbstractController
 {
-
     public function login()
     {
         global $sessionRole, $errorMessage;

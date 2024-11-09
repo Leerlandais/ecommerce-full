@@ -24,7 +24,7 @@ class ArticleMapping extends AbstractMapping
 
     public function __construct(array $data = [])
     {
-
+// had to do this cos things are being deprecated and the way I was passing the information is outdated (already)
         if (!empty($data)) {
             $this->prod_id = $data['prod_id'];
             $this->prod_name = $data['prod_name'] ?? '';

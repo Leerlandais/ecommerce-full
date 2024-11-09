@@ -2,11 +2,8 @@
 
 namespace Controllers;
 
-
 use model\Manager\CategoryManager;
 use model\Mapping\CategoryMapping;
-
-
 
 class CategoryController extends AbstractController
 {

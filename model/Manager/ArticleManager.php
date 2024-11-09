@@ -7,12 +7,7 @@ use model\Mapping\ArticleMapping;
 
 class ArticleManager extends AbstractManager
 {
-    /*
-     * Needs functions for :-
-     *      - Add new Item
-     *      - Update Item
-     *      - Delete Item
-     */
+
     public function addNewArticle($mapping): bool
     {
         $name =$mapping->getProdName();

@@ -2,11 +2,8 @@
 
 namespace Controllers;
 
-use model\Manager\ArticleManager;
-use model\Manager\CategoryManager;
+
 use model\Mapping\ArticleMapping;
-
-
 
 class ArticleController extends AbstractController
 {
@@ -18,8 +15,7 @@ class ArticleController extends AbstractController
             header("Location: ./");
             exit();
         }
-        $articleManager = new ArticleManager($this->db);
-        $articles = $articleManager->getArticles();
+        $articles = $this->articleManager->getArticles();
         echo $this->twig->render("private/private.article.list.html.twig", [
             "errorMessage" => $errorMessage,
             'sessionRole' => $sessionRole,
@@ -34,8 +30,7 @@ class ArticleController extends AbstractController
             header("Location: ./");
             exit();  // probably don't need to exit the code here but I like to just in case :)
         }
-        $categoryManager = new CategoryManager($this->db);
-        $categories = $categoryManager->getCategories();
+        $categories = $this->categoryManager->getCategories();
         echo $this->twig->render("private/private.article.add.html.twig", [
             "errorMessage" => $errorMessage,
             'sessionRole' => $sessionRole,
@@ -65,15 +60,14 @@ class ArticleController extends AbstractController
                 'prod_amount' => $_POST["productAmount"]
             ];
 
-            $articleManager = new ArticleManager($this->db);
             $articleMapping = new ArticleMapping($articleMapData);
 
-            $addArticle = $articleManager->addNewArticle($articleMapping);
+            $addArticle = $this->articleManager->addNewArticle($articleMapping);
             if ($addArticle) {
                 $catId = $_POST["addCatType"];
-                $articleId = $articleManager->getLastArticleId();
+                $articleId = $this->articleManager->getLastArticleId();
 
-                $addArticleCat = $articleManager->addArticleCategory($articleId, $catId);
+                $addArticleCat = $this->articleManager->addArticleCategory($articleId, $catId);
             }
 
             $_SESSION["errorMessage"] = $addArticle && $addArticleCat  ? 'Article added!' : 'Error adding article.';
@@ -89,12 +83,11 @@ class ArticleController extends AbstractController
             $_SESSION["errorMessage"] = "You are not authorised to access that page.";
             header("Location: ./");
         }
-        $articleManager = new ArticleManager($this->db);
+
         $artId = $_GET["artId"];
 
-        $oneArticle = $articleManager->getOneArticleById($artId);
-        $categoryManager = new CategoryManager($this->db);
-        $categories = $categoryManager->getCategories();
+        $oneArticle = $this->articleManager->getOneArticleById($artId);
+        $categories = $this->categoryManager->getCategories();
 
         echo $this->twig->render("private/private.article.edit.html.twig", [
             "errorMessage" => $errorMessage,
@@ -131,10 +124,9 @@ class ArticleController extends AbstractController
                 'prod_amount' => $_POST["productAmount"]
             ];
 
-            $articleManager = new ArticleManager($this->db);
             $articleMapping = new ArticleMapping($articleMapData);
 
-            $editArticle = $articleManager->editArticle($articleMapping);
+            $editArticle = $this->articleManager->editArticle($articleMapping);
             $_SESSION["errorMessage"] = $editArticle ? 'Article updated!' : 'Error updating article.';
             header("Location: ?route=listArticle");
             exit();

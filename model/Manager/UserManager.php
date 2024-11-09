@@ -7,13 +7,6 @@ use model\Mapping\UserMapping;
 
 class UserManager extends AbstractManager
 {
-    /*
-     * Needs functions for :-
-     *      - Connect User
-     *      - Disconnect User
-     *      - Create User
-     *      - Update User
-     */
 
     public function attemptUserLogin(string $name, string $pwd): bool {
         $name = htmlspecialchars(strip_tags(trim($name)));

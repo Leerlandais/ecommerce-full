@@ -2,9 +2,6 @@
 
 namespace Controllers;
 
-use model\Manager\UserManager;
-use Twig\Environment;
-
 class ErrorController extends AbstractController{
 
 

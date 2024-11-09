@@ -22,6 +22,7 @@ class UserMapping extends AbstractMapping
     protected ?string $user_uniqid;
     protected ?string $user_roles;
 
+    // Make sure that nobody can go where they shouldn't be able to go
     private function verifyUserRoles($roles) {
         if (is_string($roles)) {
             $roles = json_decode($roles, true);
