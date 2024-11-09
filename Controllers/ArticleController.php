@@ -47,7 +47,8 @@ class ArticleController extends AbstractController
             $_POST["productDesc"],
             $_POST["productPrice"],
             $_POST["productImage"],
-            $_POST["productAmount"]
+            $_POST["productAmount"],
+            $_POST["addCatType"]
         )){
             $articleMapData = [
                 'prod_name' => $_POST["productName"],
@@ -62,7 +63,14 @@ class ArticleController extends AbstractController
             $articleMapping = new ArticleMapping($articleMapData);
 
             $addArticle = $articleManager->addNewArticle($articleMapping);
-            $_SESSION["errorMessage"] = $addArticle ? 'Article added!' : 'Error adding article.';
+            if ($addArticle) {
+                $catId = $_POST["addCatType"];
+                $articleId = $articleManager->getLastArticleId();
+
+                $addArticleCat = $articleManager->addArticleCategory($articleId, $catId);
+            }
+
+            $_SESSION["errorMessage"] = $addArticle && $addArticleCat  ? 'Article added!' : 'Error adding article.';
             header("Location: ?route=admin");
             exit();
         }

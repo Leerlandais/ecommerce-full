@@ -5,7 +5,6 @@
     <div class="contain py-16">
         <div class="max-w-lg mx-auto shadow px-6 py-7 rounded overflow-hidden">
             <h2 class="text-2xl uppercase font-medium mb-1">Create an Article</h2>
-            {{ dump(categories) }}
             <form action="?route=createArt" method="post" autocomplete="off">
                 <div class="space-y-2">
                     <div>
@@ -37,6 +36,12 @@
                         <input type="number" min="0" max="99" name="productAmount" id="productAmount"
                                class="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400"
                                placeholder="0">
+                    </div>
+                    <div class="mt-4">
+                        {% for cat in categories %}
+                        <label for="addCategoryType" class="ml-4">{{ cat.catsName }}</label>
+                        <input class="ps-2 me-1 addCatType" type="radio" id="addCategoryType" name="addCatType" value="{{ cat.catsId }}" required>
+                        {% endfor %}
                     </div>
                 </div>
                 <div class="mt-4">
