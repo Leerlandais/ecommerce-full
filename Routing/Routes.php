@@ -26,6 +26,8 @@ $router->registerRoute('admin', UserController::class, 'admin');
 $router->registerRoute("addArticle", ArticleController::class, 'addArticle');
 $router->registerRoute("listArticle", ArticleController::class, 'listArticle');
 $router->registerRoute("createArt", ArticleController::class, 'createArticle');
+$router->registerRoute("updateArt", ArticleController::class, 'updateArticle');
+$router->registerRoute('editArt', ArticleController::class, 'editArticle');
 
 $router->registerRoute("addCategory", CategoryController::class, 'addCategory');
 $router->registerRoute("listCategory", CategoryController::class, 'listCategory');
