@@ -2,14 +2,10 @@
 
 namespace Controllers;
 
+use model\Manager\UserManager;
 use Twig\Environment;
 
-class HomeController {
-    private $twig;
-
-    public function __construct(Environment $twig) {
-        $this->twig = $twig;
-    }
+class HomeController extends AbstractController{
 
     public function index() {
     global $sessionRole, $errorMessage;

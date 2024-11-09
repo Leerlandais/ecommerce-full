@@ -5,16 +5,8 @@ namespace Controllers;
 use model\Manager\UserManager;
 use Twig\Environment;
 
-class UserController
+class UserController extends AbstractController
 {
-    private $userManager;
-    private $twig;
-
-    public function __construct(Environment $twig,UserManager $userManager) {
-        $this->userManager = $userManager;
-        $this->twig = $twig;
-    }
-
 
     public function logout() {
         $this->userManager->logoutUser();

@@ -3,17 +3,10 @@
 namespace Controllers;
 
 use model\Manager\UserManager;
+use Twig\Environment;
 
-class LoginController
+class LoginController extends AbstractController
 {
-    private $twig;
-    private $userManager;
-
-    public function __construct($twig, UserManager $userManager)
-    {
-        $this->twig = $twig;
-        $this->userManager = $userManager;
-    }
 
     public function login()
     {

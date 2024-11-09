@@ -2,14 +2,11 @@
 
 namespace Controllers;
 
+use model\Manager\UserManager;
 use Twig\Environment;
 
-class ErrorController {
-    private $twig;
+class ErrorController extends AbstractController{
 
-    public function __construct(Environment $twig) {
-        $this->twig = $twig;
-    }
 
     public function error404() {
         global $sessionRole, $errorMessage;
