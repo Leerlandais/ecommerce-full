@@ -3,7 +3,7 @@
 
 session_start();
 
-
+var_dump($_SESSION);
 if (isset($_SESSION["activity"]) && time() - $_SESSION["activity"] > 1800) {
     session_unset();
     session_destroy();

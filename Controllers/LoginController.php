@@ -25,9 +25,10 @@ class LoginController
                 header("Location: ./");
                 exit;
             } else {
-                $errorMessage = "Login failed. Please check your credentials.";
+                $sessionRole = $_SESSION["user_roles"];
                 echo $this->twig->render("public/public.login.html.twig", [
-                    'errorMessage' => $errorMessage
+                    'errorMessage' => $errorMessage,
+                    'sessionRole' => $sessionRole
                 ]);
             }
         } else {
