@@ -15,12 +15,23 @@ class ArticleMapping extends AbstractMapping
     use TraitTestInt;
     use TraitLaundryRoom;
 
-    protected ?int $prod_id;
-    protected ?string $prod_name;
-    protected ?string $prod_desc;
-    protected ?string $prod_img;
-    protected ?string $prod_price;
-    protected ?int $prod_amount;
+    private string $prod_name;
+    private string $prod_desc;
+    private float $prod_price;
+    private string $prod_img;
+    private int $prod_amount;
+
+    public function __construct(array $data = [])
+    {
+
+        if (!empty($data)) {
+            $this->prod_name = $data['prod_name'] ?? '';
+            $this->prod_desc = $data['prod_desc'] ?? '';
+            $this->prod_price = $data['prod_price'] ?? 0.0;
+            $this->prod_img = $data['prod_img'] ?? '';
+            $this->prod_amount = $data['prod_amount'] ?? 0;
+        }
+    }
 
     public function getProdId(): ?int
     {

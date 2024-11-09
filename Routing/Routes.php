@@ -11,7 +11,7 @@ use Routing\Router;
 
 $userManager = new UserManager($db);
 
-$router = new Router($twig, $userManager);
+$router = new Router($twig, $userManager, $db);
 
 // Register routes
 $router->registerRoute('home', HomeController::class, 'index');

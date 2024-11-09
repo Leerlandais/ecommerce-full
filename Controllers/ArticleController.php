@@ -2,13 +2,16 @@
 
 namespace Controllers;
 
-use Controllers\AbstractController;
 use model\Manager\ArticleManager;
+use model\Manager\CategoryManager;
+use model\Mapping\ArticleMapping;
 
 
 
 class ArticleController extends AbstractController
 {
+
+
     public function addArticle() {
         global $errorMessage, $sessionRole;
         if (!$this->userManager->verifyUserLevel("ROLE_ADMIN", $sessionRole)) {
@@ -16,10 +19,12 @@ class ArticleController extends AbstractController
             header("Location: ./");
             exit();  // probably don't need to exit the code here but I like to just in case :)
         }
-
+        $categoryManager = new CategoryManager($this->db);
+        $categories = $categoryManager->getCategories();
         echo $this->twig->render("private/private.article.add.html.twig", [
             "errorMessage" => $errorMessage,
-            'sessionRole' => $sessionRole
+            'sessionRole' => $sessionRole,
+            "categories" => $categories
         ]);
     }
 
@@ -39,12 +44,30 @@ class ArticleController extends AbstractController
 
     public function createArticle() {
         if (isset($_POST["productName"],
-                $_POST["productDesc"],
-                $_POST["productPrice"],
-                $_POST["productImage"],
-                $_POST["productAmount"]
+            $_POST["productDesc"],
+            $_POST["productPrice"],
+            $_POST["productImage"],
+            $_POST["productAmount"]
         )){
+            $articleMapData = [
+                'prod_name' => $_POST["productName"],
+                'prod_desc' => $_POST["productDesc"],
+                'prod_price' => $_POST["productPrice"],
+                'prod_img' => $_POST["productImage"],
+                'prod_amount' => $_POST["productAmount"]
+            ];
 
+            // Use $this->db instead of $db
+            $articleManager = new ArticleManager($this->db);
+            $articleMapping = new ArticleMapping($articleMapData);
+
+            $addArticle = $articleManager->addNewArticle($articleMapping);
+            $_SESSION["errorMessage"] = $addArticle ? 'Article added!' : 'Error adding article.';
+            header("Location: ?route=admin");
+            exit();
         }
     }
+
+
+
 }
