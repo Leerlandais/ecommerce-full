@@ -51,39 +51,7 @@
         <div class="container pb-16">
             <h2 class="text-2xl font-medium text-gray-800 uppercase mb-6" id="article_grid_header">New Arrivals</h2>
             <div class="grid grid-cols-1 md:grid-cols-4 gap-6" id="article_grid">
-                {% for prod in products|slice(0,4) %}
-                <div class="bg-white shadow rounded overflow-hidden group">
-                    <div class="relative">
-                        <img src="{{ prod.prodImg }}" alt="{{ prod.prodName }}">
-                    </div>
-                    <div class="pt-4 pb-3 px-4">
-                        <a href="?route=oneArticle&id={{ prod.prodId }}">
-                            <h4 class="uppercase font-medium
-                                         text-xl mb-2 text-gray-800
-                                         hover:text-primary transition"
-                            > {{ prod.prodName }}
-                            </h4>
-                        </a>
-                        <div class="flex items-baseline mb-1 space-x-2">
-                            <p class="text-xl text-primary font-semibold">€ {{ prod.prodPrice }}</p>
-                        </div>
-                        <div class="flex items-center">
-                            <div class="text-xs text-gray-500 ml-3">Remaining : <span class="remainingDisplay" id="item{{ prod.prodId }}">{{ prod.prodAmount }}</span></div>
-                        </div>
-                        <div>
-                            <button
-                                    class="block w-full py-1 text-center text-white
-                                       bg-primary border border-primary rounded-b
-                                       hover:bg-transparent hover:text-primary transition"
-                                    id="{{ prod.prodId }}"
-                                    onclick="addItemToStorage('${data.id},${data.cat},${data.item},${data.priceRed},${data.saved},${data.amount}')"
-                            >
-                                Add to cart
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                {% endfor %}
+
             </div>
         </div>
         <!-- ./new arrival -->
@@ -102,40 +70,7 @@
         <div class="container pb-16" id="reco_grid_hide">
             <h2 class="text-2xl font-medium text-gray-800 uppercase mb-6">recomended for you</h2>
             <div class="grid grid-cols-2 md:grid-cols-4 gap-6" id="recommended_grid">
-                {% set products = products[4:]|shuffle %}
-                {% for prod in products %}
-                    <div class="bg-white shadow rounded overflow-hidden group">
-                        <div class="relative">
-                            <img src="{{ prod.prodImg }}" alt="{{ prod.prodName }}">
-                        </div>
-                        <div class="pt-4 pb-3 px-4">
-                            <a href="?route=oneArticle&id={{ prod.prodId }}">
-                                <h4 class="uppercase font-medium
-                                         text-xl mb-2 text-gray-800
-                                         hover:text-primary transition"
-                                > {{ prod.prodName }}
-                                </h4>
-                            </a>
-                            <div class="flex items-baseline mb-1 space-x-2">
-                                <p class="text-xl text-primary font-semibold">€ {{ prod.prodPrice }}</p>
-                            </div>
-                            <div class="flex items-center">
-                                <div class="text-xs text-gray-500 ml-3">Remaining : <span class="remainingDisplay" id="item{{ prod.prodId }}">{{ prod.prodAmount }}</span></div>
-                            </div>
-                            <div>
-                                <button
-                                        class="block w-full py-1 text-center text-white
-                                       bg-primary border border-primary rounded-b
-                                       hover:bg-transparent hover:text-primary transition"
-                                        id="{{ prod.prodId }}"
-                                        onclick="addItemToStorage('${data.id},${data.cat},${data.item},${data.priceRed},${data.saved},${data.amount}')"
-                                >
-                                    Add to cart
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                {% endfor %}
+
 
             </div>
         </div>

@@ -1,7 +1,7 @@
 
 const checkoutBasketSize = document.getElementById("checkoutBasketSize");
-let currentBasket = JSON.parse(localStorage.getItem("BASKET") || "[]");
+const remainingAmountDisplay = document.querySelectorAll(".remainingAmountDisplay");
 
-checkoutBasketSize.textContent = currentBasket.length;
+let currentBasket = JSON.parse(localStorage.getItem("BASKET") || "[]");
 
 checkoutBasketSize.textContent = currentBasket.length;

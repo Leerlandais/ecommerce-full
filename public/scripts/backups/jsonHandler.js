@@ -1,7 +1,10 @@
 function getProductJson(direction, extra=null){
     showTest ? logThis("Fetching JSON data for "+direction.toUpperCase()) : null;
-    fetch("scripts/products.json")
+    fetch("../../Controllers/getProducts.php")
         .then(function(response) {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
             return response.json();
         })
         .then(function(datas) {
@@ -44,7 +47,6 @@ if (!localStorage.getItem("SOLD")) {
 }
     if (document.getElementById("article_grid") && document.getElementById("recommended_grid")) {
         // only activated if art_grid is present (therefore current page = homepage)
-        getProductJson("categoryBuild");
         getProductJson("article_grid");
         getProductJson("recommended_grid");
     }
