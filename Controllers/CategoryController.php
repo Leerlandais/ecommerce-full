@@ -32,11 +32,13 @@ class CategoryController extends AbstractController
             exit();
         }
         if (isset($_POST["categoryName"],
-            $_POST["categoryDesc"]
+            $_POST["categoryDesc"],
+            $_POST["categoryImage"]
         )){
             $categoryMapData = [
                 'cats_name' => $_POST["categoryName"],
-                'cats_desc' => $_POST["categoryDesc"]
+                'cats_desc' => $_POST["categoryDesc"],
+                'cats_img' => $_POST["categoryImage"],
             ];
 
             $categoryManager = new CategoryManager($this->db);
@@ -96,12 +98,14 @@ class CategoryController extends AbstractController
         if (isset(
             $_POST["categoryId"],
             $_POST["categoryName"],
-            $_POST["categoryDesc"]
+            $_POST["categoryDesc"],
+            $_POST["categoryImage"]
         )){
             $categoryMapData = [
                 'cats_id' => $_POST["categoryId"],
                 'cats_name' => $_POST["categoryName"],
-                'cats_desc' => $_POST["categoryDesc"]
+                'cats_desc' => $_POST["categoryDesc"],
+                'cats_img' => $_POST["categoryImage"]
             ];
 
             $categoryManager = new CategoryManager($this->db);

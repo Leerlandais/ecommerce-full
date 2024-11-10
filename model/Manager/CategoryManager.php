@@ -30,12 +30,14 @@ class CategoryManager extends AbstractManager
     public function addNewCategory($mapping) {
         $name =$mapping->getCatsName();
         $desc =$mapping->getCatsDesc();
+        $img = $mapping->getCatsImg();
 
         $stmt = $this->db->prepare("INSERT INTO ecom_categories(
                                                         cats_name, 
-                                                        cats_desc) 
-                                          VALUES (?,?)");
-        $stmt->execute([$name, $desc]);
+                                                        cats_desc,
+                                                        cats_img) 
+                                          VALUES (?,?,?)");
+        $stmt->execute([$name, $desc, $img]);
         if ($stmt->rowCount() === 0) return false;
         return true;
     }
@@ -44,12 +46,17 @@ class CategoryManager extends AbstractManager
         $id =$mapping->getCatsId();
         $name =$mapping->getCatsName();
         $desc =$mapping->getCatsDesc();
+        $img = $mapping->getCatsImg();
+
         $stmt = $this->db->prepare("UPDATE ecom_categories 
-                                          SET `cats_name`= :name,`cats_desc`= :descrpt 
+                                          SET `cats_name`= :name,
+                                              `cats_desc`= :descrpt,
+                                              `cats_img`= :img
                                           WHERE cats_id = :id");
         $stmt->bindParam(":id", $id);
         $stmt->bindParam(":name", $name);
         $stmt->bindParam(":descrpt", $desc);
+        $stmt->bindParam(":img", $img);
         $stmt->execute();
         if ($stmt->rowCount() === 0) return false;
         return true;
