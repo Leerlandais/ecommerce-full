@@ -15,7 +15,7 @@ class ArticleMapping extends AbstractMapping
     use TraitTestInt;
     use TraitLaundryRoom;
 
-    private int $prod_id;
+    private ?int $prod_id;
     private string $prod_name;
     private string $prod_desc;
     private float $prod_price;

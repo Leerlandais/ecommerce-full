@@ -39,8 +39,8 @@
                     </div>
                     <div class="mt-4 text-center">
                         {% for cat in categories %}
-                        <label for="addCategoryType" class="ml-4">{{ cat.catsName }}</label>
-                        <input class="ps-2 me-1 addCatType" type="radio" id="addCategoryType" name="addCatType" value="{{ cat.catsId }}" required>
+                        <label for="addCategoryType{{ cat.catsId }}" class="ml-4">{{ cat.catsName }}</label>
+                        <input class="ps-2 me-1 addCatType" type="radio" id="addCategoryType{{ cat.catsId }}" name="addCatType" value="{{ cat.catsId }}" required>
                         {% endfor %}
                     </div>
                 </div>
