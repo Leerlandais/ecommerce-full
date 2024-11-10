@@ -68,7 +68,7 @@
                             <p class="text-xl text-primary font-semibold">€ {{ prod.prodPrice }}</p>
                         </div>
                         <div class="flex items-center">
-                            <div class="text-xs text-gray-500 ml-3">Remaining : <span>{{ prod.prodAmount }}</span></div>
+                            <div class="text-xs text-gray-500 ml-3">Remaining : <span class="remainingDisplay" id="item{{ prod.prodId }}">{{ prod.prodAmount }}</span></div>
                         </div>
                         <div>
                             <button
@@ -120,7 +120,7 @@
                                 <p class="text-xl text-primary font-semibold">€ {{ prod.prodPrice }}</p>
                             </div>
                             <div class="flex items-center">
-                                <div class="text-xs text-gray-500 ml-3">Remaining : <span id="amt{{ prod.prodId }}">{{ prod.prodAmount }}</span></div>
+                                <div class="text-xs text-gray-500 ml-3">Remaining : <span class="remainingDisplay" id="item{{ prod.prodId }}">{{ prod.prodAmount }}</span></div>
                             </div>
                             <div>
                                 <button
