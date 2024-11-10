@@ -18,11 +18,9 @@ try {
 $articleManager = new ArticleManager($db);
 
     $datas = $articleManager->getArticlesForJson();
-    var_dump($datas);
     if (!is_string($datas)) {
         echo json_encode($datas);
     }
-
     $db = null;
     exit();
 

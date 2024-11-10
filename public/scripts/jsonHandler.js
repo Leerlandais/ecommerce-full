@@ -1,19 +1,23 @@
-function getProductJson() {
-    fetch("../../Controllers/getProducts.php")
-        .then(function(response) {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.json();
-        })
-        .then(function(datas) {
-            handleJsonData(datas);
-        })
-        .catch(error => console.error('Error fetching data:', error));
+async function getProductJson() {
+    try {
+        const response = await fetch("../../Controllers/getProducts.php");
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        const datas = await response.json();
+        return datas; // Return the data as a resolved Promise
+    } catch (error) {
+        console.error('Error fetching data:', error);
+        throw error; // Re-throw to handle errors in calling code if needed
+    }
 }
 
-getProductJson();
+
+
 
 function handleJsonData(datas) {
-    console.log("OK : "+JSON.stringify(datas));
+    showTest ? logThis("Json data received"+ JSON.stringify(datas)) : null;
+    showTest ? logThis("Preparing Remaining Items", true) : null;
+
+
 }

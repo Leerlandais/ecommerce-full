@@ -1,22 +1,27 @@
 
 function createRemainingAmountStorage() {
-    const remainingDisplay = document.querySelectorAll(".remainingDisplay");
-    showTest ? logThis("Creating for "+remainingDisplay.length+" items...") : null;
-    const storage = [];
-    for (let i = 0; i < remainingDisplay.length; i++) {
-       let remaining = remainingDisplay[i].textContent;
-       let id = remainingDisplay[i].id;
-       let data = {
-           id: id,
-           remaining: remaining
-       }
-       storage.push(data);
-       localStorage.setItem("REMAINING", JSON.stringify(storage));
-    }
+    if (localStorage.getItem("REMAINING") !== null) return;
+    getProductJson()
+        .then(datas => {
+            writeStorage(datas);
+        })
+        .catch(error => {
+            console.error("Error fetching data:", error);
+        });
 
+    function writeStorage(datas) {
+    const storageArray = [];
+    let artData;
+        datas.forEach((item) => {
+            artData = {
+                id: item["prod_id"],
+                total: item["prod_amount"]
+            }
+        storageArray.push(artData);
+        })
+    localStorage.setItem("REMAINING", JSON.stringify(storageArray));
     showTest ? logThis("Remaining Inventory Created : "+localStorage.getItem("REMAINING")) : null;
+    }
 }
 
-if (localStorage.getItem("REMAINING") === null) {
-    createRemainingAmountStorage();
-}
+createRemainingAmountStorage();
