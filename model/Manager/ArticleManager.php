@@ -40,6 +40,26 @@ class ArticleManager extends AbstractManager
         }
         return $dataObject;
     }
+    public function getArticlesForJson(): array
+    {
+        $query = $this->db->query("SELECT * FROM ecom_products ORDER BY prod_id DESC");
+        $datas = $query->fetchAll();
+        $query->closeCursor();
+
+        $dataArray = [];
+        foreach ($datas as $data) {
+            $article = new ArticleMapping($data);
+            $dataArray[] = [
+                'prod_id' => $article->getProdId(),
+                'prod_name' => $article->getProdName(),
+                'prod_desc' => $article->getProdDesc(),
+                'prod_price' => $article->getProdPrice(),
+                'prod_img' => $article->getProdImg(),
+                'prod_amount' => $article->getProdAmount(),
+            ];
+        }
+        return $dataArray;
+    }
 
     public function getLastArticleId() {
         $stmt = $this->db->prepare("SELECT * FROM ecom_products ORDER BY prod_id DESC LIMIT 1");
