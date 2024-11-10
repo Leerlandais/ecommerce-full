@@ -30,7 +30,8 @@ class ArticleManager extends AbstractManager
 
     public function getArticles(): array
     {
-        $query = $this->db->query("SELECT * FROM ecom_products");
+        $query = $this->db->query("SELECT * FROM ecom_products
+                                        ORDER BY prod_id DESC");
         $datas = $query->fetchAll();
         $query->closeCursor();
         $dataObject = [];
