@@ -1,6 +1,13 @@
 
 function createRemainingAmountStorage() {
-    if (localStorage.getItem("REMAINING") !== null) return;
+    if (localStorage.getItem("BASKET") === null) {
+        showTest ? logThis("No basket detected", true) : null;
+        localStorage.setItem("BASKET", JSON.stringify([]));
+    }
+        if (localStorage.getItem("REMAINING") !== null) return;
+
+    showTest ? logThis("No inventory detected", true) : null;
+
     getProductJson()
         .then(datas => {
             writeStorage(datas);
@@ -20,7 +27,7 @@ function createRemainingAmountStorage() {
         storageArray.push(artData);
         })
     localStorage.setItem("REMAINING", JSON.stringify(storageArray));
-    showTest ? logThis("Remaining Inventory Created : "+localStorage.getItem("REMAINING")) : null;
+    showTest ? logThis("Inventory Created : "+localStorage.getItem("REMAINING")) : null;
     }
 }
 
