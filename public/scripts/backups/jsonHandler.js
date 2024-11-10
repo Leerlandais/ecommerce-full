@@ -17,9 +17,7 @@ function getProductJson(direction, extra=null){
 function handleJsonData(datas, direction, extra) {
     // check which function asked for JSON and act accordingly
     switch (direction) {
-        case "categoryBuild" :
-            buildCategoryGrid(datas);
-            break;
+
         case "selectedCat" :
             buildByCatSelection(datas, extra);
             break;
@@ -36,15 +34,12 @@ function handleJsonData(datas, direction, extra) {
             const recoData = shuffledData.slice(0,4);
             buildArticleGrid(recoData,direction);
             break;
-        case "storageSold" :
-            createSoldItems(datas);
+        case "writeStorage" :
+            writeStorage(datas);
             break;
     }
 }
-if (!localStorage.getItem("SOLD")) {
-    showTest ? logThis("No local storage found. Creating a new one", true) : null;
-    getProductJson("storageSold");
-}
+
     if (document.getElementById("article_grid") && document.getElementById("recommended_grid")) {
         // only activated if art_grid is present (therefore current page = homepage)
         getProductJson("article_grid");
