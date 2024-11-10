@@ -26,20 +26,22 @@
         <div class="container py-16">
             <h2 class="text-2xl font-medium text-gray-800 uppercase mb-6">shop by category</h2>
             <div class="grid grid-cols-3 gap-3" id="category_grid">
+                {% for cat in categories %}
                 <div class="relative rounded-sm overflow-hidden group">
-                    <img src=""
-                         alt=""
+                    <img src="{{ cat.catsImg }}"
+                         alt="{{ cat.catsName }}"
                          class="w-full"
                     />
-                    <button class="absolute inset-0 bg-black bg-opacity-40
+                    <a href="?route=oneCategory&cat={{ cat.catsName }}">
+                        <button class="absolute inset-0 bg-black bg-opacity-40
                                            flex items-center justify-center text-xl
                                            text-white font-roboto font-medium
-                                           group-hover:bg-opacity-60 transition"
-                            onclick='getProductJson("selectedCat", "${cat}")'>
-                        cat name
-                    </button>
+                                           group-hover:bg-opacity-60 transition">
+                        {{ cat.catsName }}
+                        </button>
+                    </a>
                 </div>
-
+                {% endfor %}
             </div>
         </div>
         <!-- ./categories -->
@@ -50,6 +52,37 @@
             <h2 class="text-2xl font-medium text-gray-800 uppercase mb-6" id="article_grid_header">New Arrivals</h2>
             <div class="grid grid-cols-1 md:grid-cols-4 gap-6" id="article_grid">
 
+                <div class="bg-white shadow rounded overflow-hidden group">
+                    <div class="relative">
+                        <img src="" alt="">
+                    </div>
+                    <div class="pt-4 pb-3 px-4">
+                        <a href="">
+                            <h4 class="uppercase font-medium
+                                         text-xl mb-2 text-gray-800
+                                         hover:text-primary transition"
+                            > name
+                            </h4>
+                        </a>
+                        <div class="flex items-baseline mb-1 space-x-2">
+                            <p class="text-xl text-primary font-semibold">€ price</p>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="text-xs text-gray-500 ml-3">Remaining : <span id="amt${data['id']}">left</span></div>
+                        </div>
+                        <div>
+                            <button
+                                    class="block w-full py-1 text-center text-white
+                                       bg-primary border border-primary rounded-b
+                                       hover:bg-transparent hover:text-primary transition"
+                                    id="ITEM${data['id']}"
+                                    onclick="addItemToStorage('${data.id},${data.cat},${data.item},${data.priceRed},${data.saved},${data.amount}')"
+                            >
+                                Add to cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <!-- ./new arrival -->
