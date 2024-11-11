@@ -54,7 +54,14 @@ class UserManager extends AbstractManager
         if(!in_array($level, json_decode($userLevel))) return false;
 
         return true;
+    }
 
+    public function checkForUser($user) : bool {
+        $stmt = $this->db->prepare("SELECT * FROM `ecom_users` WHERE `user_username` = :user");
+        $stmt->bindParam(':user', $user);
+        $stmt->execute();
+        if ($stmt->rowCount() === 0) return false;
+        return true;
     }
 
 } // end class
