@@ -111,7 +111,7 @@ function buildArticleGrid(datas, grid) {
                                        bg-primary border border-primary rounded-b 
                                        hover:bg-transparent hover:text-primary transition"
                                 id="ITEM${data['id']}"
-                                onclick="addItemToStorage('${data["prod_id"]},${data.cat},${data["prod_name"]},${data["prod_price"]},${data["prod_amount"]}')"
+                                onclick="addItemToStorage('${data["prod_id"]},${data["prod_name"]},${data["prod_price"]},${data["prod_amount"]}')"
                                 > 
                                 Add to cart
                                 </button>`// add onclick here

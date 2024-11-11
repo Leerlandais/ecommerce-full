@@ -50,11 +50,9 @@ function addItemToStorage(data) {
    data = data.split(",")
     const item = {
         "id": data[0],
-        "cat": data[1],
-        "item": data[2],
-        "price": data[3],
-        "saved": data[4],
-        "amount": data[5],
+        "item": data[1],
+        "price": data[2],
+        "amount": data[3],
     };
     // add item to existing basket or create new one if needed
     showTest ? logThis("Adding "+item["item"]+" to the basket", true) : null;
