@@ -1,4 +1,4 @@
-async function getProductJson() {
+async function getProductsJsons() {
     try {
         const response = await fetch("../../Controllers/getProducts.php");
         if (!response.ok) {

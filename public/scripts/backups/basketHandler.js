@@ -92,7 +92,7 @@ function increaseBasket(data){
             j = i;
         }
     }
-    addItemToStorage(`${basket[j].id},${basket[j].cat},${basket[j].item},${basket[j].price},${basket[j].saved},${basket[j].amount}`);
+    addItemToStorage(`${basket[j].id},${basket[j].item},${basket[j].price},${basket[j].amount}`);
 }
 
 function decreaseBasket(data){

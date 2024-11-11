@@ -53,6 +53,7 @@ function addItemToStorage(data) {
         "item": data[1],
         "price": data[2],
         "amount": data[3],
+        'occurs': data[4]
     };
     // add item to existing basket or create new one if needed
     showTest ? logThis("Adding "+item["item"]+" to the basket", true) : null;

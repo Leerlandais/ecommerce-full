@@ -110,7 +110,7 @@ function buildArticleGrid(datas, grid) {
                                 class="block w-full py-1 text-center text-white 
                                        bg-primary border border-primary rounded-b 
                                        hover:bg-transparent hover:text-primary transition"
-                                id="ITEM${data['id']}"
+                                id="ITEM${data['prod_id']}"
                                 onclick="addItemToStorage('${data["prod_id"]},${data["prod_name"]},${data["prod_price"]},${data["prod_amount"]}')"
                                 > 
                                 Add to cart
@@ -178,6 +178,7 @@ function    createCheckoutBasket(datas){
 
 
         if (checkSoldAmount(data)) {
+
             showTest ? logThis("Maximum sold amount detected, increase button disabled", true) : null;
             const disableThisButton = document.getElementById(`increaseBtn${data.id}`)
             disableThisButton.disabled = true;
@@ -188,15 +189,10 @@ function    createCheckoutBasket(datas){
 }
 
 function  checkSoldAmount(data) {
-    // for each increase button created, check if total current items exceeds amount in stock - disable if true
-    const soldDatas = JSON.parse(localStorage.getItem("SOLD"));
-    for (i = 0; i < soldDatas.length; i++) {
-        if (parseInt(soldDatas[i]["id"]) === parseInt(data["id"])) {
-            let totalSold = parseInt(soldDatas[i]["sold"]) + parseInt(data.occurs);
-            // returns boolean response
-            return totalSold > (data["amount"] - 1);
-        }
-    }
+
+        let remains = data.amount - data.occurs;
+        return remains < 1;
+
 }
 
 function createTotalPriceGrid(datas) {
