@@ -1,4 +1,6 @@
 const checkoutGrid = document.getElementById("checkout_grid");
+
+/*
 function buildCategoryGrid(datas) {
     showTest ? logThis("Building Category Grid", true) : null;
     // Retrieve parent
@@ -41,6 +43,7 @@ function buildCategoryGrid(datas) {
     });
     showTest ? logThis("Category Grid built with "+distinctCats.length+" windows", true) : null;
 }
+*/
 
 function buildByCatSelection(datas, category) {
     showTest ? logThis("Building By Selected Category :"+category, true) : null;
@@ -67,35 +70,19 @@ function buildArticleGrid(datas, grid) {
         i++;
     }
 
-    let soldDatas = JSON.parse(localStorage.getItem("SOLD"));
     let remaining = 0;
+    showTest ? logThis("Building with : "+JSON.stringify(datas)) : null;
     datas.forEach(data => {
-        showTest ? logThis("Creating window for "+data["item"]) : null
-        for (i = 0; i < soldDatas.length; i++) {
-            if (soldDatas[i]["id"] === data["id"]) {
+        showTest ? logThis("Creating window for "+data["prod_name"]) : null
 
-               remaining = parseInt(data["amount"]) - parseInt((soldDatas[i].sold));
-               showTest ? logThis("Calculating remaining items : "+remaining) : null;
-            }
-        }
-        // if there are items in the basket, adjust the remaining amount
-        if (localStorage.getItem("BASKET")){
-            const currentBasket = JSON.parse(localStorage.getItem("BASKET"));
-            currentBasket.forEach((item) => {
-                if (parseInt(item.id) === parseInt(data.id)) {
-                    remaining--;
-                }
-            })
 
-        }
-        data.saved = parseInt(data.price) - parseInt(data.priceRed);
         // Parent Div for each element
         const divExt = document.createElement("div");
             divExt.classList.add("bg-white", "shadow", "rounded", "overflow-hidden", "group",);
         // Div to hold the image
         const divImg = document.createElement("div");
             divImg.classList.add("relative");
-            divImg.innerHTML = `<img src="${data['img']}" alt="${data.item}">`
+            divImg.innerHTML = `<img src="${data['prod_img']}" alt="${data["prod_name"]}">`
                 divExt.appendChild(divImg);
         // Div to hold product info
         const divLink = document.createElement("div");
@@ -104,18 +91,17 @@ function buildArticleGrid(datas, grid) {
             link.innerHTML = `<h4 class="uppercase font-medium 
                                          text-xl mb-2 text-gray-800 
                                          hover:text-primary transition"
-                              > ${data["item"]}
+                              > ${data["prod_name"]}
                               </h4>`
                 divLink.appendChild(link);
         const divPrice = document.createElement("div");
             divPrice.classList.add("flex", "items-baseline", "mb-1", "space-x-2");
-            divPrice.innerHTML = `<p class="text-xl text-primary font-semibold">€ ${data["priceRed"]}</p>
-                              <p class="text-sm text-gray-400 line-through">€ ${data["price"]}</p>`
+            divPrice.innerHTML = `<p class="text-xl text-primary font-semibold">€ ${data["prod_price"]}</p>`
                 divLink.appendChild(divPrice);
         // Div to display remaining articles
         const divLeft = document.createElement("div");
             divLeft.classList.add("flex", "items-center");
-            divLeft.innerHTML = `<div class="text-xs text-gray-500 ml-3">Remaining : <span id="amt${data['id']}">${remaining}</span></div>`;
+            divLeft.innerHTML = `<div class="text-xs text-gray-500 ml-3">Remaining : <span id="amt${data['prod_id']}">${data["prod_amount"]}</span></div>`;
         // attaché au parent(divLink)
                 divLink.appendChild(divLeft);
         // Finalement, le div pour contenir le bouton (Add to Cart)
@@ -124,8 +110,8 @@ function buildArticleGrid(datas, grid) {
                                 class="block w-full py-1 text-center text-white 
                                        bg-primary border border-primary rounded-b 
                                        hover:bg-transparent hover:text-primary transition"
-                                id="ITEM${data['id']}"
-                                onclick="addItemToStorage('${data.id},${data.cat},${data.item},${data.priceRed},${data.saved},${data.amount}')"
+                                id="ITEM${data['prod_id']}"
+                                onclick="addItemToStorage('${data["prod_id"]},${data["prod_name"]},${data["prod_price"]},${data["prod_amount"]}')"
                                 > 
                                 Add to cart
                                 </button>`// add onclick here
@@ -134,10 +120,10 @@ function buildArticleGrid(datas, grid) {
 
             currentGrid.appendChild(divExt);
         // in case the user has returned to this screen, or refreshed it, make sure buttons are disable where necessary
-        if (remaining === 0) disableButton(data.id, data.item);
+   //     if (remaining === 0) disableButton(data["prod_id"], data["prod_name"]);
     });
 
-    showTest ? logThis("Article Grid built with "+datas.length+" windows", true) : null;
+    showTest ? logThis(`${grid} built with `+datas.length+" windows", true) : null;
 
 }
 
@@ -192,6 +178,7 @@ function    createCheckoutBasket(datas){
 
 
         if (checkSoldAmount(data)) {
+
             showTest ? logThis("Maximum sold amount detected, increase button disabled", true) : null;
             const disableThisButton = document.getElementById(`increaseBtn${data.id}`)
             disableThisButton.disabled = true;
@@ -202,15 +189,10 @@ function    createCheckoutBasket(datas){
 }
 
 function  checkSoldAmount(data) {
-    // for each increase button created, check if total current items exceeds amount in stock - disable if true
-    const soldDatas = JSON.parse(localStorage.getItem("SOLD"));
-    for (i = 0; i < soldDatas.length; i++) {
-        if (parseInt(soldDatas[i]["id"]) === parseInt(data["id"])) {
-            let totalSold = parseInt(soldDatas[i]["sold"]) + parseInt(data.occurs);
-            // returns boolean response
-            return totalSold > (data["amount"] - 1);
-        }
-    }
+
+        let remains = data.amount - data.occurs;
+        return remains < 1;
+
 }
 
 function createTotalPriceGrid(datas) {

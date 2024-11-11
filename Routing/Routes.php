@@ -3,6 +3,7 @@
 
 use Controllers\ArticleController;
 use Controllers\CategoryController;
+use Controllers\CheckoutController;
 use Controllers\ErrorController;
 use Controllers\HomeController;
 use Controllers\LoginController;
@@ -40,6 +41,8 @@ $router->registerRoute("listCategory", CategoryController::class, 'listCategory'
 $router->registerRoute('createCat', CategoryController::class, 'createCategory');
 $router->registerRoute("updateCat", CategoryController::class, 'updateCategory');
 $router->registerRoute('editCat', CategoryController::class, 'editCategory');
+// the checkout page
+$router->registerRoute("checkout", CheckoutController::class, 'checkout');
 // the inevitable error page :-)
 $router->registerRoute('404', ErrorController::class, 'error404');
 

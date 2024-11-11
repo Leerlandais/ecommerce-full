@@ -26,8 +26,22 @@
         <div class="container py-16">
             <h2 class="text-2xl font-medium text-gray-800 uppercase mb-6">shop by category</h2>
             <div class="grid grid-cols-3 gap-3" id="category_grid">
-
-
+                {% for cat in categories %}
+                <div class="relative rounded-sm overflow-hidden group">
+                    <img src="{{ cat.catsImg }}"
+                         alt="{{ cat.catsName }}"
+                         class="w-full"
+                    />
+                    <a href="?route=oneCategory&cat={{ cat.catsName }}">
+                        <button class="absolute inset-0 bg-black bg-opacity-40
+                                           flex items-center justify-center text-xl
+                                           text-white font-roboto font-medium
+                                           group-hover:bg-opacity-60 transition">
+                        {{ cat.catsName }}
+                        </button>
+                    </a>
+                </div>
+                {% endfor %}
             </div>
         </div>
         <!-- ./categories -->
@@ -70,7 +84,7 @@
             <div class="border border-primary bg-blue-800 bg-opacity-40 rounded-sm px-3 py-6 flex justify-center items-center max-w-lg mx-auto">
                 <img src="../../public/images/icons/delivery-van.svg" alt="Delivery" class="w-12 h-12 object-contain">
                 <div>
-                    <h4 class="font-medium capitalize text-lg">Checkout | &lpar;<span id="basketSize">0</span>&rpar;</h4>
+                    <h4 class="font-medium capitalize text-lg">Checkout | &lpar;<span id="basketSize"></span>&rpar;</h4>
                 </div>
             </div>
         </a>

@@ -17,6 +17,10 @@ class CategoryMapping extends AbstractMapping
     protected ?string $cats_name;
     protected ?string $cats_desc;
 
+    protected ?string $cats_img;
+
+
+
     public function getCatsId(): ?int
     {
         return $this->cats_id;
@@ -53,7 +57,17 @@ class CategoryMapping extends AbstractMapping
         $cats_desc = $this->standardClean($cats_desc);
         $this->cats_desc = $cats_desc;
     }
+    public function getCatsImg(): ?string
+    {
+        return $this->cats_img;
+    }
 
+    public function setCatsImg(?string $cats_img): void
+    {
+        if(!$this->verifyString($cats_img)) throw new Exception("Img must be a string");
+        $cats_img = $this->simpleTrim($cats_img);
+        $this->cats_img = $cats_img;
+    }
 
 
 } // end class
