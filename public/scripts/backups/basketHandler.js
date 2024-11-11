@@ -114,9 +114,8 @@ function deleteFromBasket(id) {
     showTest ? logThis("Deleting this from basket : "+id, true) : null;
     let origBasket = JSON.parse(localStorage.getItem("BASKET") || "[]");
     const delResponse = confirm("Are you sure you want to delete this item?");
-        if(delResponse === null) {
-            return;
-        }
+        if(delResponse === true) {
+
     // filter basket keeping only items whose id don't match removed item
     let newBasket = origBasket.filter(data => parseInt(data.id) !== id);
 
@@ -127,6 +126,7 @@ function deleteFromBasket(id) {
     // recreate the checkout
     const basket = prepareUnifiedBasket();
     createCheckoutBasket(basket);
+        }
 
 }
 
