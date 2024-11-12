@@ -34,7 +34,7 @@ function validateForm() {
         submitButton.textContent = "Complete the form to continue";
     }else{
         submitButton.style.opacity = "1";
-        submitButton.textContent = "Submit Order";
+        submitButton.textContent = "Create Account";
         showTest ? logThis("Submit Button has been activated", true) : null;
     }
 }

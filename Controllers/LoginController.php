@@ -8,7 +8,14 @@ class LoginController extends AbstractController
 {
     public function login()
     {
+        // using the same function to load the page and to check for form input - stolen straight from the Symfony method :-D
         global $sessionRole, $errorMessage;
+
+        if ($this->userManager->verifyUserLevel("ROLE_USER", $sessionRole)) {
+            $_SESSION["errorMessage"] = "You're already logged in, nitwit!.";
+            header("Location: ./");
+        }
+
         if (isset($_POST["userLoginName"], $_POST["userLoginPwd"])) {
             $name = $_POST["userLoginName"];
             $pwd = $_POST["userLoginPwd"];
@@ -33,6 +40,12 @@ class LoginController extends AbstractController
     public function createUser()
     {
         global $sessionRole, $errorMessage;
+
+        if ($this->userManager->verifyUserLevel("ROLE_USER", $sessionRole)) {
+            $_SESSION["errorMessage"] = "You're already logged in, nitwit!.";
+            header("Location: ./");
+        }
+
         if (isset($_POST["userCreateName"],
                   $_POST["userCreateFullName"],
                   $_POST["userCreateEmail"],
