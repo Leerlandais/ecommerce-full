@@ -35,7 +35,7 @@ function validateForm() {
     }else{
         submitButton.style.opacity = "1";
         submitButton.textContent = "Submit Order";
-      //  showTest ? logThis("Submit Button has been activated", true) : null;
+        showTest ? logThis("Submit Button has been activated", true) : null;
     }
 }
 

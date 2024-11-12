@@ -18,7 +18,7 @@
                 </div>
                 <div>
                     <label class="text-gray-600 font-bold inline-block pb-2" for="userCreateEmail" id="createFormEmail">Email :</label>
-                    <input class="border border-gray-400 focus:outline-slate-400 rounded-md w-full shadow-sm px-5 py-2" type="text" name="userCreateEmail" id="userEmail" required>
+                    <input class="border border-gray-400 focus:outline-slate-400 rounded-md w-full shadow-sm px-5 py-2" type="email" name="userCreateEmail" id="userEmail" required>
                 </div>
                 <div>
                     <label class="text-gray-600 font-bold inline-block pb-2" for="userCreateAddress" id="createFormAddress">Address :</label>
@@ -126,5 +126,6 @@
 {% endblock %}{# endMain #}
 {% block footer %}{% endblock %}
 {% block scripts %}
+    <script src="../../public/scripts/consoleLogger.js"></script>
     <script src="../../public/scripts/userValidation.js"></script>
 {% endblock %}
