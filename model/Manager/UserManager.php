@@ -64,4 +64,33 @@ class UserManager extends AbstractManager
         return true;
     }
 
+    function createNewUser($datas) : bool {
+        $name = $datas->getUserUsername();
+        $password = $datas->getUserPassword();
+        $fullname = $datas->getUserFullname();
+        $email = $datas->getUserEmail();
+        $address = $datas->getUserAddress();
+        $uniqId = $datas->getUserUniqid();
+        $roles = $datas->getUserRoles();
+
+        $stmt = $this->db->prepare("INSERT INTO `ecom_users`
+                                                    (`user_username`,
+                                                     `user_password`,
+                                                     `user_fullname`,
+                                                     `user_email`,
+                                                     `user_address`,
+                                                     `user_uniqid`,
+                                                     `user_roles`) 
+                                            VALUES (:name,:pass,:full,:mail,:addr,:uniq,:role)");
+        $stmt->bindParam(':name', $name);
+        $stmt->bindParam(':pass', $password);
+        $stmt->bindParam(':full', $fullname);
+        $stmt->bindParam(':mail', $email);
+        $stmt->bindParam(':addr', $address);
+        $stmt->bindParam(':uniq', $uniqId);
+        $stmt->bindParam(':role', $roles);
+        $stmt->execute();
+        if ($stmt->rowCount() === 0) return false;
+        return true;
+    }
 } // end class

@@ -120,7 +120,7 @@ class UserMapping extends AbstractMapping
     public function setUserUniqid(?string $user_uniqid): void
     {
         if(!$this->verifyString($user_uniqid)) throw new Exception('Uniqid must be a string');
-        $user_uniqid = $this->standardClean($user_uniqid);
+        $user_uniqid = $this->simpleTrim($user_uniqid);
         $this->user_uniqid = $user_uniqid;
     }
 
@@ -131,7 +131,6 @@ class UserMapping extends AbstractMapping
 
     public function setUserRoles(?string $user_roles): void
     {
-
         if(!$this->verifyString($user_roles)) throw new Exception('Roles must be an string');
         if(!$this->verifyUserRoles($user_roles)) throw new Exception('Role not acceptable');
         $this->user_roles = $user_roles;
