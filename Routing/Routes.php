@@ -10,14 +10,16 @@ use Controllers\LoginController;
 use Controllers\UserController;
 use model\Manager\ArticleManager;
 use model\Manager\CategoryManager;
+use model\Manager\OrderManager;
 use model\Manager\UserManager;
 use Routing\Router;
 
 $userManager = new UserManager($db);
 $articleManager = new ArticleManager($db);
 $categoryManager = new CategoryManager($db);
+$orderManager = new OrderManager($db);
 
-$router = new Router($twig, $userManager, $articleManager, $categoryManager, $db);
+$router = new Router($twig, $userManager, $articleManager, $categoryManager, $orderManager,$db);
 
 // Register routes
 // found a way to handle passing stuff to my Controller Class - kind of reminds me of node :)

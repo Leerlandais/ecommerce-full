@@ -4,25 +4,28 @@ namespace Routing;
 
 use model\Manager\ArticleManager;
 use model\Manager\CategoryManager;
+use model\Manager\OrderManager;
 use model\Manager\UserManager;
 use model\MyPDO;
 use Twig\Environment;
 
 class Router
 {
-    private $routes = [];
-    private $twig;
-    private $userManager;
-    private $articleManager;
-    private $categoryManager;
+    private array $routes = [];
+    private Environment $twig;
+    private UserManager $userManager;
+    private ArticleManager $articleManager;
+    private CategoryManager $categoryManager;
+    private OrderManager $orderManager;
     private MyPDO $db;
 
-    public function __construct(Environment $twig, UserManager $userManager, ArticleManager $articleManager, CategoryManager $categoryManager, MyPDO $db)
+    public function __construct(Environment $twig, UserManager $userManager, ArticleManager $articleManager, CategoryManager $categoryManager, OrderManager $orderManager ,MyPDO $db)
     {
         $this->twig = $twig;
         $this->userManager = $userManager;
         $this->articleManager = $articleManager;
         $this->categoryManager = $categoryManager;
+        $this->orderManager = $orderManager;
         $this->db = $db;
     }
 
@@ -43,7 +46,7 @@ class Router
         $controllerClass = $this->routes[$route]['controller'];
         $method = $this->routes[$route]['method'];
 
-        $controller = new $controllerClass($this->twig, $this->userManager, $this->articleManager, $this->categoryManager, $this->db);
+        $controller = new $controllerClass($this->twig, $this->userManager, $this->articleManager, $this->categoryManager, $this->orderManager ,$this->db);
 
         $controller->$method();
     }
