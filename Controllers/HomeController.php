@@ -17,18 +17,5 @@ class HomeController extends AbstractController{
         ]);
     }
 
-    public function profile() {
-        global $sessionRole, $errorMessage;
-        $user = [
-            'userName' => $_SESSION['user_fullname'],
-            "userAddr" => $_SESSION['user_address'],
-        ];
-          // $userInfo = $this->userManager->getUserInfo();
-        echo $this->twig->render("public/public.profile.html.twig", [
-            'sessionRole' => $sessionRole,
-            'errorMessage' => $errorMessage,
-            'orderHistory' => [1,2,3],
-            "user" => $user,
-        ]);
-    }
+
 }

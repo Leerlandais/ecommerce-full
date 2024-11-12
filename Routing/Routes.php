@@ -8,6 +8,7 @@ use Controllers\ErrorController;
 use Controllers\HomeController;
 use Controllers\LoginController;
 use Controllers\UserController;
+use Controllers\OrderController;
 use model\Manager\ArticleManager;
 use model\Manager\CategoryManager;
 use model\Manager\OrderManager;
@@ -30,7 +31,7 @@ $router->registerRoute('login', LoginController::class, 'login');
 $router->registerRoute('logout', UserController::class, 'logout');
 $router->registerRoute("createUser", LoginController::class, "createUser");
 // the user profile and history pages
-$router->registerRoute("userProfile", HomeController::class, "profile");
+$router->registerRoute("userProfile", OrderController::class, "profile");
 // the admin verification passage
 $router->registerRoute('super', UserController::class, 'super');
 $router->registerRoute('admin', UserController::class, 'admin');
