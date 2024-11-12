@@ -101,7 +101,7 @@
 {{ dump(orderHistory) }}
         <!-- wishlist -->
         <div class="col-span-9 space-y-4">
-            {% if orderHistory|length > 2 %}
+            {% if orderHistory|length %}
             {% for order in orderHistory %}
             <div class="flex items-center justify-between border gap-6 p-4 border-gray-200 rounded">
                 <div class="w-1/3">
