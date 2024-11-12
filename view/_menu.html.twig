@@ -17,7 +17,10 @@
             {% if sessionRole %}
                 <a href="?route=logout" class="text-gray-200 hover:text-white transition">Logout</a>
             {% else %}
+                <div class="space-x-6">
                 <a href="?route=login" class="text-gray-200 hover:text-white transition">Login</a>
+                <a href="?route=createUser" class="text-gray-200 hover:text-white transition">Sign Up</a>
+                </div>
             {% endif %}
         </div>
     </div>
