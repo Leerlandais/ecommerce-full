@@ -11,7 +11,7 @@ class LoginController extends AbstractController
         // using the same function to load the page and to check for form input - stolen straight from the Symfony method :-D
         global $sessionRole, $errorMessage;
 
-        if ($this->userManager->verifyUserLevel("ROLE_USER", $sessionRole)) {
+        if ($sessionRole !== "") {
             $_SESSION["errorMessage"] = "You're already logged in, nitwit!.";
             header("Location: ./");
         }
@@ -41,7 +41,7 @@ class LoginController extends AbstractController
     {
         global $sessionRole, $errorMessage;
 
-        if ($this->userManager->verifyUserLevel("ROLE_USER", $sessionRole)) {
+        if ($sessionRole !== "") {
             $_SESSION["errorMessage"] = "You're already logged in, nitwit!.";
             header("Location: ./");
         }

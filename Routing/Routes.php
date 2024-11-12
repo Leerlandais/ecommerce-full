@@ -27,6 +27,8 @@ $router->registerRoute('home', HomeController::class, 'index');
 $router->registerRoute('login', LoginController::class, 'login');
 $router->registerRoute('logout', UserController::class, 'logout');
 $router->registerRoute("createUser", LoginController::class, "createUser");
+// the user profile and history pages
+$router->registerRoute("userProfile", HomeController::class, "profile");
 // the admin verification passage
 $router->registerRoute('super', UserController::class, 'super');
 $router->registerRoute('admin', UserController::class, 'admin');

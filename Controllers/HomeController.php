@@ -16,4 +16,13 @@ class HomeController extends AbstractController{
             'categories' => $categories,
         ]);
     }
+
+    public function profile() {
+        global $sessionRole, $errorMessage;
+
+        echo $this->twig->render("public/public.profile.html.twig", [
+            'sessionRole' => $sessionRole,
+            'errorMessage' => $errorMessage,
+        ]);
+    }
 }
