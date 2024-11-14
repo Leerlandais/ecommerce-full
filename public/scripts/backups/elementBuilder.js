@@ -70,7 +70,6 @@ function buildArticleGrid(datas, grid) {
         i++;
     }
 
-    let remaining = 0;
     showTest ? logThis("Building with : "+JSON.stringify(datas)) : null;
     datas.forEach(data => {
         showTest ? logThis("Creating window for "+data["prod_name"]) : null
